@@ -16,10 +16,21 @@ class ProfessionalExamPassed extends Model
 	];
 
 	protected $table = 'professional_exams_passed';
+
+
+
+
     
 	public function user(){
 	
 	    return $this->belongsTo('App\User');
+	    	
+	}
+
+
+	public function department(){
+	
+	    return $this->belongsTo('App\Department');
 	    	
 	}
 

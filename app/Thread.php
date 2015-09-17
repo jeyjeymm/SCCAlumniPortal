@@ -45,7 +45,7 @@ class Thread extends Model
 
 	public function scopeDepartmentThreads($query, $id){
 	
-	    return $query->where('department_id', $id);
+	    return $query->where('department_id', $id)->orWhere('department_id',1);
 	    	
 	}
 

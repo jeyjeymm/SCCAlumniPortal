@@ -15,7 +15,7 @@
 
             <div class="row">
 
-                <div class="col s12 m4 l4">
+                <div class="col s12 m6 l6">
                        
                         <input name="employment_data_yes_no_options" type="radio" id="btn_yes_employment_data">
                         
@@ -23,7 +23,7 @@
                 
                 </div>
                 
-                <div class="col s12 m4 l4">
+                <div class="col s12 m6 l6">
                                     
                         <input name="employment_data_yes_no_options"  type="radio" id="btn_no_employment_data">
                      
@@ -31,13 +31,13 @@
                                
                 </div>
                 
-                <div class="col s12 m4 l4">
+                <!--<div class="col s12 m4 l4">
                   
                         <input name="employment_data_yes_no_options"  type="radio" id="btn_never_employment_data">
                    
                         <label for="btn_never_employment_data">Never</label>
                
-                </div>
+                </div>-->
 
             </div>
 
@@ -51,57 +51,18 @@
 
                     {!! csrf_field() !!}
 
-                    <div id="employment_status_container">
-                                  	
-                    	<h5>Present Employment Status: </h5>
 
-                    	<div class="input-field">
+                    @include('survey.employment_data.includes.employment_status')
+                        	
 
-                        	@include('survey.employment_data.includes.employment_status')
-                        	<label>Employment Status</label>
+                    @include('survey.employment_data.includes.present_occupation')
 
-                    	</div>                    	
 
-                    </div>
+                    @include('survey.employment_data.includes.salaries')
 
-                    <div id="occupation_container">
-
-                        <div class="input-field">
-
-                            <h5> Present Occupation </h5>
-
-                        </div>
-
-                        <div class="input-field">
-                        
-                            @include('survey.employment_data.includes.major_line_of_company')
-                            
-                        </div>
-
-                        <div class="input-field">
-                        
-                            <input type="text" name="name_of_company_or_org" required/>
-                            <label>Name of Company or Organization</label>
-
-                        </div>
-
-                        <div class="input-field">
-                        
-                            @include('survey.employment_data.includes.place_of_work')
-                            <label>Place of Work</label>
-
-                        </div>
-
-                        <div class="input-field">
-
-                            <input type="text" name="work_address" required/>
-                            <label>Work Address:</label>
-
-                        </div>
-
-                    </div>
-
-                    @include('survey.employment_data.includes.job')
+                   
+                    @include('survey.employment_data.includes.curriculum_relevance')
+      
 
                     <!--Submit Button-->
 
@@ -121,7 +82,7 @@
 <!--/YES_OPTIONS-->
 
 
-<!--NO_NEVER_OPTIONS-->
+<!--NO_OPTIONS-->
             
             <div class="card pad_20" id="employment_data_no_container" style="display:none;">
                 
@@ -132,14 +93,6 @@
                         {!! csrf_field() !!}
 
                         @include('survey.employment_data.includes.reasons_not_yet_employed')
-                        
-                        <div class="input-field">
-                           
-                            <input type="text" name="reasons_not_yet_employed_others">
-                           
-                            <label for="reasons_not_yet_employed_others">Others, please specify</label>
-                        
-                        </div>
 
                         <!--Submit Button-->
 

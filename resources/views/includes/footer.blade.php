@@ -8,7 +8,7 @@
 
             <h5 class="white-text">San Carlos College Alumni Portal</h5>
 
-            <p class="grey-text text-lighten-4">Comments? Suggestions? Email us at sancarloscollege.edu.ph</p>
+            <p class="grey-text text-lighten-4">Comments? Suggestions? Please go to sancarloscollege.edu.ph</p>
 
         </div>
 
@@ -22,7 +22,7 @@
 
                 @if (Auth::check())
 
-                    @if (Auth::user()->role->id === 3)
+                    @if (Auth::user()->role->name === 'user')
 
                         <li><a class="grey-text text-lighten-3" href=" {{ url('profiles') }} " value="page_profile">Profile</a></li>
 

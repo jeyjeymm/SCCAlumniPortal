@@ -33,6 +33,8 @@ var order_by_direction = user_management_search.find('#order_by_direction');
 var department_filter = user_management_search.find('#department_filter');
 var user_search = $('#user_search');
 
+var lbl_print_department = tbl_user_management_container.find('#lbl_print_department');
+
 var btn_print_table = tbl_user_management_container.find('#btn_print_table');
 var btn_create_account = tbl_user_management_container.find('#btn_create_account'); 
 
@@ -239,10 +241,13 @@ btn_print_table.on('click',function(e){
 	footer.hide();
 	btn_create_account.hide();
 	btn_print_table.hide();
+	lbl_print_department.html('<b>' + department_filter.children("option").filter(":selected").text() + '</b>').show();
 
 
 	window.print();
 
+
+	lbl_print_department.hide();
 	user_management_search.show();
 	nav.show();
 	footer.show();

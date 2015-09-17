@@ -21,11 +21,19 @@ class CreateEducationalAttainmentsTable extends Migration
             $table->string('year_graduated');
             $table->string('honors_or_awards');
             $table->integer('user_id')->unsigned();
+            $table->integer('department_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+
+            $table->foreign('department_id')
+                    ->references('id')
+                    ->on('departments')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 

@@ -15,11 +15,15 @@
 	        		<a {{ array_key_exists('id', $fab_array[$i]) ? 'id=' . $fab_array[$i]['id'] : '' }} 
 	        			{{ array_key_exists('href', $fab_array[$i]) ? 'href=' . url($fab_array[$i]['href']) : '' }}  
 	        				class="btn-floating waves-effect btn-large tooltipped {{ $fab_array[$i]['color'] }}"
-	        					data-delay="300" data-position="left" data-tooltip="{{ $fab_array[$i]['tooltip'] }}">
+	        				data-delay="300" 
+	        				data-position="left" 
+	        				data-tooltip="{{ $fab_array[$i]['tooltip'] }}">
 	               
-	                <i class="large material-icons"> {{ $fab_array[$i]['icon'] }}</i></a>
+	                	<i class="large material-icons"> {{ $fab_array[$i]['icon'] }}</i>
 
-	                <ul>
+	                </a>
+
+	            <ul>
 
 	        	@else
 
@@ -40,6 +44,6 @@
 
 	    @endfor
 
-    </ul>
+	    		</ul>
 
 </div>

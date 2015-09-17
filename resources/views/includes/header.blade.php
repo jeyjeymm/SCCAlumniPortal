@@ -9,7 +9,7 @@
 
                 <a href="#" data-activates="sidenav" class="button-collapse"><i class="tiny material-icons">menu</i></a>
                 
-                 <img id="logo" class=" brand-logo center responsive-img z-depth-1 circle hide-on-med-and-down" style="margin: 5px" src="{{ url('images/logo.png') }}" />
+                 <img id="logo" height="60px" width="60px" class="brand-logo center responsive-img circle hide-on-med-and-down" src="{{ url('images/logo.png') }}" />
                 
                 <a class="brand-logo margin-sides roboto-thin white-text hide-on-small-only">San Carlos College Alumni Portal</a>                  
 

@@ -11,7 +11,7 @@
 	if ($thread->user->profile !== null) {
 
 		$url = 'profiles' . '.' . $thread->user->profile->id . '.' . 'profile_picture';
-		$name = $thread->user->profile->image_name;
+		$name = $thread->user->profile->image_name !== '' ? $thread->user->profile->image_name : 'default' ;
 
 
 
@@ -19,7 +19,7 @@
 
 
 		$url = 'profiles';
-		$name = 'default.jpg';
+		$name = 'default';
 	}
 
 

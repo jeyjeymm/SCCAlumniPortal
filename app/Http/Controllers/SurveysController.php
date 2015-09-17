@@ -117,6 +117,8 @@ class SurveysController extends Controller
 
             $educational_attainment = new EducationalAttainment($request_data);
 
+            $educational_attainment->department()->associate(Auth::user()->department);
+
             Auth::user()->educational_attainments()->save($educational_attainment);
 
         }
@@ -143,6 +145,8 @@ class SurveysController extends Controller
             unset($request_data['rating_'.$i]);
 
             $professional_exam_passed = new ProfessionalExamPassed($request_data);
+
+            $professional_exam_passed->department()->associate(Auth::user()->department);
 
             Auth::user()->professional_exams_passed()->save($professional_exam_passed);
             
@@ -172,6 +176,8 @@ class SurveysController extends Controller
 
             $training_or_advanced_study = new TrainingOrAdvancedStudy($request_data);
 
+            $training_or_advanced_study->department()->associate(Auth::user()->department);
+
             Auth::user()->training_or_advanced_studies()->save($training_or_advanced_study);
             
     
@@ -182,11 +188,9 @@ class SurveysController extends Controller
     }
 
 
-    public function store_employment_data(Request $request, $choice){
-
-
+    public function store_employment_data(Request $request, $is_employed){
     
-        if ($choice === 'no') {
+        if ($is_employed === 'no') {
 
             $request_data = $request->all();
 
@@ -203,13 +207,16 @@ class SurveysController extends Controller
                 $request_data["reasons_not_yet_employed"] = $i;
                 
             $employment_data = new EmploymentData($request_data);
+
+            $employment_data->department()->associate(Auth::user()->department);
+
             Auth::user()->employment_data()->save($employment_data);
 
         } else {
 
             $request_data = $request->except('reasons_not_yet_employed','reasons_not_yet_employed_others');
 
-                if ($request_data['is_first_job'] === 'no') {
+                /*if ($request_data['is_first_job'] === 'no') {
 
                     $temp = $request_data["reasons_for_changing_job"];
 
@@ -223,9 +230,12 @@ class SurveysController extends Controller
 
                     $request_data["reasons_for_changing_job"] = $i;
 
-                }
+                }*/
 
             $employment_data = new EmploymentData($request_data);
+
+            $employment_data->department()->associate(Auth::user()->department);
+
             Auth::user()->employment_data()->save($employment_data);
 
         }
@@ -240,7 +250,7 @@ class SurveysController extends Controller
     
         $employment_data = Auth::user()->employment_data;
 
-        return view('profiles.includes.forms.employment_data_form',compact('employment_data'));
+        return view('profiles.edit_employment_data',compact('employment_data'));
             
     }
 
@@ -250,7 +260,7 @@ class SurveysController extends Controller
 
         $request_data = $request->all();
 
-            if ($request_data['is_first_job'] === 'no') {
+            /*if ($request_data['is_first_job'] === 'no') {
 
                 $temp = $request_data["reasons_for_changing_job"];
 
@@ -264,11 +274,10 @@ class SurveysController extends Controller
 
                 $request_data["reasons_for_changing_job"] = $i;
 
-            }
+            }*/
 
         //Set to empty
         $request_data["reasons_not_yet_employed"] = '';
-
         $employment_data = EmploymentData::findOrFail($id);
         $employment_data->update($request_data);
 
@@ -286,6 +295,29 @@ class SurveysController extends Controller
         $employment_data = EmploymentData::paginate(20);
 
         return view('survey.list',compact('educational_attainments','professional_exams_passed','training_or_advanced_studies','employment_data'));
+            
+    }
+
+
+    public function filter($department_id){
+
+        if ($department_id === '0') {
+
+            $educational_attainments = EducationalAttainment::paginate(20);
+            $professional_exams_passed = ProfessionalExamPassed::paginate(20);
+            $training_or_advanced_studies = TrainingOrAdvancedStudy::paginate(20);
+            $employment_data = EmploymentData::paginate(20);
+
+        } else {
+    
+            $educational_attainments = EducationalAttainment::where('department_id',$department_id)->paginate(20);
+            $professional_exams_passed = ProfessionalExamPassed::where('department_id',$department_id)->paginate(20);
+            $training_or_advanced_studies = TrainingOrAdvancedStudy::where('department_id',$department_id)->paginate(20);
+            $employment_data = EmploymentData::where('department_id',$department_id)->paginate(20);
+
+        }
+
+        return view('survey.includes.survey_list',compact('educational_attainments','professional_exams_passed','training_or_advanced_studies','employment_data'));
             
     }
 

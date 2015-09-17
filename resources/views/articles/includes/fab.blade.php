@@ -9,10 +9,9 @@
 
 				[
 
-					'href' => 'articles/create',
 					'color' => 'red darken-2',
-					'tooltip' => 'Click here to create an article.',
-					'icon' => 'create'
+					'tooltip' => 'Click here to open up other actions.',
+					'icon' => 'add'
 
 				],
 
@@ -37,9 +36,18 @@
 				[
 
 					'href' => 'survey/list',
-					'color' => 'orange',
+					'color' => 'orange darken-2',
 					'tooltip' => 'Click here to view survey results.',
 					'icon' => 'view_list'
+
+				],
+
+				[
+
+					'href' => 'articles/create',
+					'color' => 'yellow darken-2',
+					'tooltip' => 'Click here to create an article.',
+					'icon' => 'create'
 
 				]
 

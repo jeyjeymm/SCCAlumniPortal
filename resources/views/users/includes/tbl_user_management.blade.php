@@ -16,6 +16,7 @@
                 <option value="name" selected>Name</option>
                 <option value="id">ID</option>
                 <option value="email">Email</option>
+                <option value="batch">Batch</option>
             </select>
             <label>Search by:</label>
 
@@ -24,8 +25,9 @@
         <div class="input-field col s6 m4 l4">
             
             <select id="order_by">
-                <option value="id" selected>ID</option>
-                <option value="name">Name</option>
+                <option value="name" selected>Name</option>
+                <option value="batch">Batch</option>
+                <!--<option value="id">ID</option>-->
                 <option value="department_id">Department</option>
                 <option value="updated_at">Date Updated</option>
             </select>

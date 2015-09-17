@@ -26,11 +26,11 @@ class ThreadsController extends Controller
 
         if (Auth::check()) {
 
-            $threads = Thread::departmentThreads(Auth::user()->department->id)->publicThreads()->paginate(10);
+            $threads = Thread::departmentThreads(Auth::user()->department->id)->paginate(20);
 
         } else {
 
-            $threads = Thread::publicThreads()->paginate(10);
+            $threads = Thread::publicThreads()->paginate(20);
 
         }
 
@@ -55,7 +55,7 @@ class ThreadsController extends Controller
 
     	$thread = Thread::findOrFail($id);
 
-    	$comments = $thread->comments()->paginate(10);
+    	$comments = $thread->comments()->paginate(20);
 
     	return view('threads.show',compact('thread','comments'));
 

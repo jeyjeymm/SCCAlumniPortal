@@ -45,13 +45,7 @@
 
 		    <p class="col s6 m6 l6"><b>Place of Work:</b></p>
 
-		    <p class="col s6 m6 l6" name="place_of_work"> {{ $employment_data->place_of_work }} </p>     
-
-
-
-			<p class="col s6 m6 l6"><b>Job Duration:</b></p>
-
-		    <p class="col s6 m6 l6" name="job_duration"> {{ $employment_data->job_duration }} </p>    
+		    <p class="col s6 m6 l6" name="place_of_work"> {{ $employment_data->place_of_work }} </p>      
 
 
 

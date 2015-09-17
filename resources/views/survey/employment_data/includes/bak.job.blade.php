@@ -6,7 +6,7 @@
 
         <div class="col s12 m6 l6">
                
-                <input name="is_first_job" type="radio" id="btn_yes_first_job" value="yes">
+                <input name="is_first_job" type="radio" id="btn_yes_first_job" value="Yes">
                 
                 <label for="btn_yes_first_job">Yes</label>
         
@@ -14,7 +14,7 @@
         
         <div class="col s12 m6 l6">
                             
-                <input name="is_first_job"  type="radio" id="btn_no_first_job" value="no">
+                <input name="is_first_job"  type="radio" id="btn_no_first_job" value="No">
              
                 <label for="btn_no_first_job">No</label>
                        

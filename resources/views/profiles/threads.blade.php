@@ -20,7 +20,16 @@
 
 			<a href="{{ url('threads/'.$thread->id) }}" class="collection-item avatar"> 
 
-				<img src="{{ route('getPhoto',['url' => 'profiles' . '.' . $thread->user->profile->id . '.' . 'profile_picture', 'name' => $thread->user->profile->image_name]) }}" alt="Avatar" class="circle"/>
+				<img 
+					src="{{ route('getPhoto',[
+
+						'url' => 'profiles' . '.' . $thread->user->profile->id . '.' . 'profile_picture', 
+						'name' => $thread->user->profile->image_name !== '' ? $thread->user->profile->image_name : 'default' 
+
+						]) }}" 
+						
+					alt="Avatar" 
+					class="circle"/>
 
 				<p>
 

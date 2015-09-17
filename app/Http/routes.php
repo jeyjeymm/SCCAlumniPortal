@@ -37,8 +37,8 @@ Route::get('articles/{article_id}/comments/{comment_id}/destroy', 'ArticleCommen
 
 
 Route::resource('users','UsersController',['except' => ['show','create','edit']]);
-Route::get('users/{id}/destroy', 'UsersController@destroy');
 Route::get('users/search/{column}/{id}/{department}/{order}','UsersController@search');
+Route::get('users/{id}/destroy', 'UsersController@destroy');
 
 
 Route::resource('slider','SliderObjectsController', ['except' => 'show' ]);
@@ -64,7 +64,11 @@ Route::post('survey/educational_attainments/{num}','SurveysController@store_educ
 Route::post('survey/professional_exams_passed/{num}','SurveysController@store_professional_exams_passed');
 Route::post('survey/training_or_advanced_studies/{num}','SurveysController@store_training_or_advanced_studies');
 Route::post('survey/employment_data/{choice}','SurveysController@store_employment_data');
+Route::get('survey/list/filter/{department}','SurveysController@filter');
 Route::get('survey/{id}','SurveysController@show');
+
+
+
 
 Route::get('employment_data/{id}/edit','SurveysController@edit_employment_data');
 Route::post('employment_data/{id}/update','SurveysController@update_employment_data');

@@ -19,11 +19,19 @@ class CreateProfessionalExamsPassedTable extends Migration
             $table->string('date_taken');
             $table->string('rating');
             $table->integer('user_id')->unsigned();
+            $table->integer('department_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+
+            $table->foreign('department_id')
+                    ->references('id')
+                    ->on('departments')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 

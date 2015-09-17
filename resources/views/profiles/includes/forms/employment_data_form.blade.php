@@ -17,29 +17,6 @@
 
 	];
 
-	$line_of_work = [
-		
-		'Agriculture, Hunting and Forestry',
-		'Fishing',
-		'Mining and Quarrying',
-		'Manufacturing',
-		'Electricity, Gas and Water Supply',
-		'Construction',
-		'Wholesale and Retail Trade',
-		'Repair of Motor Vehicles, Motorcycles and Personal and Household Goods',
-		'Hotels and Restaurants',
-		'Transport Storage and Communication',
-		'Financial Intermediation',
-		'Real State, Renting and Business Activities',
-		'Public Administration and Defense',
-		'Education',
-		'Health and Social Work',
-		'Other community, Social and Personal Service Activities',
-		'Private Households with Employed Persons',
-		'Extra-territorial Organizations and Bodies'
-
-	];
-
 
 	$place_of_work = [
 
@@ -48,111 +25,121 @@
 
 	];
 
+	$salaries = [
+
+		'Below P5,000.00',
+		'P15,000.00 to less than P20,000.00',
+		'P5,000.00 to less than P10,000.00',
+		'P20,000.00 to less than P25,000.00',
+		'P10,000.00 to less than P15,000.00',
+		'P25,000.00 and above'
+
+	];
+
 
 ?>
-@include('includes.css')
-<div class="container">
 
-	<div class="row">
 
-		<div class="card pad_20" id="employment_data_yes_container">
+<div id="employment_status_container">
+              	
+	<h5>Present Employment Status: </h5>
 
-		    <form action="{{ url('employment_data/'.$employment_data->id.'/update') }}" method="post">
+	<div class="input-field">
 
-		    	<input type="hidden" name="survey_id" value="">
+		<select name="employment_status">
 
-		        {!! csrf_field() !!}
+			@foreach($employment_status as $value)
+				
+				<option value="{{ $value }}" {{ $employment_data->employment_status === $value ? 'selected' : '' }}>{{ $value }}</option>
 
-		        <div id="employment_status_container">
-		                      	
-		        	<h5>Present Employment Status: </h5>
+			@endforeach
 
-		        	<div class="input-field">
+		</select>
 
-						<select name="employment_status">
+	<label>Employment Status</label>
 
-							@foreach($employment_status as $value)
-								
-								<option value="{{ $value }}" {{ $employment_data->employment_status === $value ? 'selected' : '' }}>{{ $value }}</option>
+	</div>                    	
 
-							@endforeach
+</div>
 
-						</select>
+<div id="occupation_container">
 
-	            	<label>Employment Status</label>
+    <div class="input-field">
 
-		        	</div>                    	
+        <h5> Present Occupation </h5>
 
-		        </div>
+    </div>
 
-		        <div id="occupation_container">
+    <div class="input-field">
+    
+        <input type="text" name="present_occupation" value="{{ $employment_data->present_occupation }}" required/>
+        <label>Present Occupation</label>
 
-		            <div class="input-field">
+    </div>
 
-		                <h5> Present Occupation </h5>
+    <div class="input-field">
+    
+        <input type="text" name="name_of_company_or_org" value="{{ $employment_data->name_of_company_or_org }}" required/>
+        <label>Name of Company or Organization</label>
 
-		            </div>
+    </div>
 
-		            <div class="input-field">
-		            
-		                <select name="present_occupation" class="browser-default" required>
-							@foreach($line_of_work as $value)
+    <div class="input-field">
+    
+        <select name="place_of_work">
+			@foreach ($place_of_work as $value)
 
-								<option value="{{ $value }}"  {{ $employment_data->present_occupation === $value ? 'selected' : '' }}>{{ $value }}</option>
+				<option value="{{ $value }}" {{ $employment_data->place_of_work === $value ? 'selected' : '' }}>{{ $value }}</option>
 
-							@endforeach
-						</select>
+			@endforeach
+		</select>
 
-		                
-		            </div>
+        <label>Place of Work</label>
 
-		            <div class="input-field">
-		            
-		                <input type="text" name="name_of_company_or_org" value="{{ $employment_data->name_of_company_or_org }}" required/>
-		                <label>Name of Company or Organization</label>
+    </div>
 
-		            </div>
+    <div class="input-field">
 
-		            <div class="input-field">
-		            
-		                <select name="place_of_work">
-							@foreach ($place_of_work as $value)
+        <input type="text" name="work_address" value="{{ $employment_data->work_address }}" required/>
+        <label>Work Address:</label>
 
-								<option value="{{ $value }}" {{ $employment_data->place_of_work === $value ? 'selected' : '' }}>{{ $value }}</option>
+    </div>
 
-							@endforeach
-						</select>
+</div>
 
-		                <label>Place of Work</label>
+<div id="salaries">
 
-		            </div>
+	<div class="input-field">
 
-		            <div class="input-field">
+		<h5>What is your initial gross monthly earning in your first job after college?</h5>
+		
+		<select name="salary" class="browser-default">
+		@foreach ($salaries as $value)
 
-                        <input type="text" name="work_address" value="{{ $employment_data->work_address }}" required/>
-                        <label>Work Address:</label>
+			<option value="{{ $value }}" {{ $employment_data->salary === $value ? 'selected' : '' }}>{{ $value }}</option>
 
-                    </div>
-
-		        </div>
-
-		        @include('profiles.includes.forms.job')
-
-		        <!--Submit Button-->
-
-		        <button type="submit" class="btn red darken-4 waves-effect waves-light right">
-		            
-		            <i class="material-icons right">done</i>
-		           
-		            Finish
-		       
-		        </button>
-		    
-		    </form>
-
-		</div>
+		@endforeach
+		</select>
 
 	</div>
 
 </div>
-@include('includes.scripts')
+
+<div id="curriculum_relevance">
+
+	<div class="input-field">
+		
+	<h5>Was the curriculum you had in college relevant to your first job?</h5>
+
+	<select name="is_curriculum_relevant">
+
+		<option value="Yes" {{ $employment_data->is_curriculum_relevant === 'Yes' ? 'selected' : '' }} >Yes</option>
+		<option value="No" {{ $employment_data->is_curriculum_relevant === 'No' ? 'selected' : '' }} >No</option>
+
+	</select>
+
+</div>
+  
+</div>
+
+

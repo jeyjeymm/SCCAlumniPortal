@@ -9,11 +9,12 @@
     <div class="indeterminate"></div>
 
 </div>
+<p id="lbl_print_department" class="center" style="display: none"></p>
 <table id="tbl_user_management" class="striped">
 
     <thead>
         <tr>
-            <th data-field="id">ID</th>
+            <!--<th data-field="id">ID</th>-->
             <th data-field="name">Name</th>
             <th data-field="batch">Batch</th>
             <th data-field="name_of_company_or_org">Name of Company</th>
@@ -41,7 +42,7 @@
 		        		<!--<input type="hidden" id="course" value="{{ $user->course_id }}"/>-->
 		        		<input type="hidden" id="role" value="{{ $user->role_id }}"/>
 
-		            <td>{{ $user->id }}</td>
+		            <!--<td>{{ $user->id }}</td>-->
 		            <td>{{ $user->name }}</td>
 		            <td>{{ $user->batch !== '' ? $user->batch : '-' }}</td>
 		            <td>{{ $user->employment_data()->first() ? $user->employment_data->name_of_company_or_org : '-' }}</td>

@@ -36,6 +36,8 @@
 
 <script type="text/javascript" src="{{ url('js/survey_form.js') }}"></script>
 
+<script type="text/javascript" src="{{ url('js/survey_list.js') }}"></script>
+
 
 
 

@@ -17,8 +17,8 @@ class CreateThreadsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('body');
-            $table->integer('num_views');
-            $table->integer('num_comments');
+            //$table->integer('num_views');
+            //$table->integer('num_comments');
             $table->integer('user_id')->unsigned();
             $table->integer('department_id')->unsigned();
             $table->timestamps();

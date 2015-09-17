@@ -14,10 +14,21 @@ class TrainingOrAdvancedStudy extends Model
 		'institution'
 
 	];
+
+
+
+
     
 	public function user(){
 	
 	    return $this->belongsTo('App\User');
+	    	
+	}
+
+
+	public function department(){
+	
+	    return $this->belongsTo('App\Department');
 	    	
 	}
 

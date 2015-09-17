@@ -233,8 +233,8 @@
 
 		<select name="is_curriculum_relevant">
 
-			<option value="yes" {{ $employment_data->is_curriculum_relevant === 'yes' ? 'selected' : '' }} >Yes</option>
-			<option value="no" {{ $employment_data->is_curriculum_relevant === 'no' ? 'selected' : '' }} >No</option>
+			<option value="Yes" {{ $employment_data->is_curriculum_relevant === 'yes' ? 'selected' : '' }} >Yes</option>
+			<option value="No" {{ $employment_data->is_curriculum_relevant === 'no' ? 'selected' : '' }} >No</option>
 
 		</select>
 
