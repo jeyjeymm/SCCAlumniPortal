@@ -61,7 +61,7 @@
 
 				<div class="container-fluid center">
 
-					@if (Auth::user()->role->id === 3)
+					@if (Auth::user()->role->name === 'user')
 
 						@if ($profile->id === Auth::user()->profile->id)
 

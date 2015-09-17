@@ -20,6 +20,13 @@ use Auth;
 
 class SurveysController extends Controller
 {
+
+    public function __construct(){
+    
+        $this->middleware('auth');
+            
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +34,15 @@ class SurveysController extends Controller
      */
     public function index()
     {
+        //if(Auth::user()->department->name === 'High School' || Auth::user()->department->name === 'UPHS') {
 
-        return view('survey.index');
+        //   return view('survey.highschool.index');
+
+        //} else {
+
+            return view('survey.index');
+
+        //}
     }
 
     /**
@@ -174,7 +188,7 @@ class SurveysController extends Controller
     
         if ($choice === 'no') {
 
-            $request_data = $request->only('reasons_not_yet_employed','reasons_not_yet_employed_others');
+            $request_data = $request->all();
 
                 $temp = $request_data["reasons_not_yet_employed"];
 
@@ -227,6 +241,38 @@ class SurveysController extends Controller
         $employment_data = Auth::user()->employment_data;
 
         return view('profiles.includes.forms.employment_data_form',compact('employment_data'));
+            
+    }
+
+
+    public function update_employment_data(Request $request, $id){
+    
+
+        $request_data = $request->all();
+
+            if ($request_data['is_first_job'] === 'no') {
+
+                $temp = $request_data["reasons_for_changing_job"];
+
+                $i = null;
+
+                for ($x = 0; $x < count($temp); $x++) {
+
+                    $i .= $x === 0 ? $temp[$x] : ','.$temp[$x] ;   
+
+                }
+
+                $request_data["reasons_for_changing_job"] = $i;
+
+            }
+
+        //Set to empty
+        $request_data["reasons_not_yet_employed"] = '';
+
+        $employment_data = EmploymentData::findOrFail($id);
+        $employment_data->update($request_data);
+
+        return redirect('profiles');
             
     }
 

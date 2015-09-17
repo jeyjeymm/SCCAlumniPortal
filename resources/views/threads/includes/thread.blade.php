@@ -25,7 +25,7 @@
 
 	if (Auth::check()) {
 
-		if (Auth::user()->role->id === 1) {
+		if (Auth::user()->role->name === 'admin') {
 
 			$thread_ownership_validation = true;
 

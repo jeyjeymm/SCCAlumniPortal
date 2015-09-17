@@ -3,7 +3,6 @@
 	@Params
 
 	SliderObject $slider_object;
-	String $role;
 
 -->
 
@@ -24,7 +23,7 @@
         
         </h5>
 
-        @if ($role === 'admin') 
+        @if (Auth::check() && Auth::user()->role->name === 'admin') 
         	
         	<a href="{{ url( 'slider/' . $slider_object->id . '/edit' ) }}" 
         		class="btn-flat waves-effect waves-dark white-text blue darken-1">

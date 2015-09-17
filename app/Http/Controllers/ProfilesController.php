@@ -19,6 +19,13 @@ use File;
 
 class ProfilesController extends Controller
 {
+
+    public function __construct(){
+    
+        $this->middleware('auth');
+            
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -165,7 +172,7 @@ class ProfilesController extends Controller
 
     public function search($name){
     
-        $users_array = User::where('name','LIKE',"%$name%")->get();
+        $users_array = User::where('name','LIKE',"%$name%")->paginate(20);
 
         $profiles = [];
 

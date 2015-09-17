@@ -13,7 +13,7 @@
 
         <div class="col s12 m6 l6">
                
-                <input name="is_first_job" type="radio" id="btn_yes_first_job"  value="yes">
+                <input name="is_first_job" type="radio" id="btn_yes_first_job"  value="yes" {{ $employment_data->is_first_job === 'yes' ? 'checked' : '' }}>
                 
                 <label for="btn_yes_first_job">Yes</label>
         
@@ -21,7 +21,7 @@
         
         <div class="col s12 m6 l6">
                             
-                <input name="is_first_job"  type="radio" id="btn_no_first_job" value="no">
+                <input name="is_first_job"  type="radio" id="btn_no_first_job" value="no" {{ $employment_data->is_first_job === 'no' ? 'checked' : '' }}>
              
                 <label for="btn_no_first_job">No</label>
                        
@@ -58,7 +58,7 @@
 
 			<div class="input-field">
 
-				<input checked name="reasons_for_changing_job[]" id="reasons_for_changing_job_{{ $key }}" type="checkbox" value="{{ $value }}" />
+				<input name="reasons_for_changing_job[]" id="reasons_for_changing_job_{{ $key }}" type="checkbox" value="{{ $value }}" />
 				<label for="reasons_for_changing_job_{{ $key }}"> {{ $value }}</label>
 
 			</div>
@@ -98,7 +98,7 @@
 	  	<select name="job_duration" class="browser-default">
 	  	@foreach ($job_duration as $value)
 
-	  		<option value="{{ $value }}">{{ $value }}</option>
+	  		<option value="{{ $value }}" {{ $employment_data->job_duration === $value ? 'selected' : '' }} > {{ $value }} </option>
 
 	  	@endforeach
 	  	</select>
@@ -134,7 +134,7 @@
 		<select name="method_of_finding_job" class="browser-default">
 		@foreach ($method_of_finding_job as $value)
 
-			<option value="{{ $value }}">{{ $value }}</option>
+			<option value="{{ $value }}" {{ $employment_data->method_of_finding_job === $value ? 'selected' : '' }} >{{ $value }}</option>
 
 		@endforeach
 		</select>
@@ -174,7 +174,7 @@
 		<select name="job_finding_duration" class="browser-default">
 		@foreach ($job_finding_duration as $value)
 
-			<option value="{{ $value }}">{{ $value }}</option>
+			<option value="{{ $value }}" {{ $employment_data->job_finding_duration === $value ? 'selected' : '' }} >{{ $value }}</option>
 
 		@endforeach
 		</select>
@@ -215,7 +215,7 @@
 		<select name="salary" class="browser-default">
 		@foreach ($salaries as $value)
 
-			<option value="{{ $value }}">{{ $value }}</option>
+			<option value="{{ $value }}" {{ $employment_data->salary === $value ? 'selected' : '' }}>{{ $value }}</option>
 
 		@endforeach
 		</select>
@@ -233,8 +233,8 @@
 
 		<select name="is_curriculum_relevant">
 
-			<option value="yes">Yes</option>
-			<option value="no">No</option>
+			<option value="yes" {{ $employment_data->is_curriculum_relevant === 'yes' ? 'selected' : '' }} >Yes</option>
+			<option value="no" {{ $employment_data->is_curriculum_relevant === 'no' ? 'selected' : '' }} >No</option>
 
 		</select>
 

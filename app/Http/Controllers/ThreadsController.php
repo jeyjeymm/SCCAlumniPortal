@@ -16,15 +16,21 @@ use Auth;
 class ThreadsController extends Controller
 {
 
+    public function __construct(){
+    
+        $this->middleware('auth',['except' => ['index','show']]);
+            
+    }
+
     public function index(){
 
         if (Auth::check()) {
 
-            $threads = Thread::where('department_id',Auth::user()->department->id)->orWhere('department_id',1)->paginate(10);
+            $threads = Thread::departmentThreads(Auth::user()->department->id)->publicThreads()->paginate(10);
 
         } else {
 
-            $threads = Thread::where('department_id',1)->paginate(10);
+            $threads = Thread::publicThreads()->paginate(10);
 
         }
 
@@ -67,16 +73,14 @@ class ThreadsController extends Controller
 
     public function update($id,ThreadRequest $request){
 
-    	if (Auth::user()->role->id === 1) {
+    	if (Auth::user()->role->name === 'admin') {
     
 	        $thread = Thread::findOrFail($id);
-
 	        $thread->update($request->all());
 
 	    }else{
 
 	    	$thread = Auth::user()->threads()->findOrFail($id);
-
 	        $thread->update($request->all());
 
 	    }

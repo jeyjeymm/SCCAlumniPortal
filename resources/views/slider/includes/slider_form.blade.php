@@ -19,7 +19,7 @@
 
 	$text_alignment = old('text_alignment');
 
-	if($action !== 'create'){
+	if($action === 'edit'){
 
 		//Explode Tagline Color into 3 values: Color class, Color shade and Color shade intensity
 		$tagline_color_class = $slider_object->tagline_color;
@@ -41,6 +41,8 @@
 		$slogan_shade = $slogan_shade_array[0].'-'.$slogan_shade_array[1];
 
 		$slogan_shade_value = substr($slogan_color_class, -1);
+
+		$text_alignment =$slider_object->text_alignment;
 
 	}
 

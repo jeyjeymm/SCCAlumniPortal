@@ -27,6 +27,8 @@ class UserTableSeeder extends Seeder
 
 				'department_id' => 1,
 
+				'course_id' => 1,
+
 				'role_id' => 1,
 
 				'created_at' => Carbon::now(),
@@ -47,6 +49,8 @@ class UserTableSeeder extends Seeder
 				'password' => bcrypt('pass'),
 
 				'department_id' => 2,
+
+				'course_id' => 1,
 
 				'role_id' => 2,
 
@@ -69,6 +73,8 @@ class UserTableSeeder extends Seeder
 
 				'department_id' => 3,
 
+				'course_id' => 1,
+
 				'role_id' => 2,
 
 				'created_at' => Carbon::now(),
@@ -89,6 +95,8 @@ class UserTableSeeder extends Seeder
 				'password' => bcrypt('pass'),
 
 				'department_id' => 4,
+
+				'course_id' => 1,
 
 				'role_id' => 2,
 
@@ -111,6 +119,8 @@ class UserTableSeeder extends Seeder
 
 				'department_id' => 5,
 
+				'course_id' => 1,
+
 				'role_id' => 2,
 
 				'created_at' => Carbon::now(),
@@ -132,7 +142,7 @@ class UserTableSeeder extends Seeder
 
 				'department_id' => 2,
 
-				'course_id' => 1,
+				'course_id' => 2,
 
 				'role_id' => 3,
 

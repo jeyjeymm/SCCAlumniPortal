@@ -55,10 +55,16 @@
 
             <div>
 
-	            <button class="waves-effect waves-light btn red darken-1" type="submit">Login</button>
+            	<button class="waves-effect waves-light btn red darken-1" type="submit">Login</button>
 
-	            <a href=" {{ url('auth/register') }} " class="waves-effect waves-red btn-flat tooltipped" data-position="bottom" data-delay="300" data-tooltip="Click here to go to the registration form.">Register</a>
+            	<a href=" {{ url('auth/register') }} " class="waves-effect waves-red btn-flat tooltipped" data-position="bottom" data-delay="300" data-tooltip="Click here to go to the registration form.">Register</a>
 	       		
+	            <div class="input-field">
+
+       				<a href=" {{ url('password/email') }} " class="tooltipped" data-position="bottom" data-delay="300" data-tooltip="Click here to go to the password reset form.">Password Reset</a>
+       		
+       			</div>       		
+
        		</div>
 
             @include('errors.form_errors')

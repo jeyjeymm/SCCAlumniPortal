@@ -39,7 +39,9 @@
 	    </div>
 
 	    <div class="input-field">
+
 	    	@include('includes.pagination',['paginator' => $threads])
+	    	
 	    </div>
 
 	@else

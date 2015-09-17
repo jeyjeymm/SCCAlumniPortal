@@ -124,10 +124,12 @@ nav_search.on('keyup',function(){
 
 						for (var i = 0; i < profiles.length; i++) {
 
+							var image_name = profiles[i].image_name !== '' ? profiles[i].image_name : 'default' ;
+
 							result += 
 								"<a href='" + window.location.origin + "/profiles/" + profiles[i].id + "' class='collection-item avatar'>" +
 
-									"<img src='" + window.location.origin + "/get/photo/profiles."+ profiles[i].id + ".profile_picture/"+profiles[i].image_name + "' alt='Avatar' class='circle'/>" +
+									"<img src='" + window.location.origin + "/get/photo/profiles."+ profiles[i].id + ".profile_picture/" + image_name + "' alt='Avatar' class='circle'/>" +
 
 									"<span class='title'>" + profiles[i].name + " (" + profiles[i].nickname + ")" + "</span>" +
 

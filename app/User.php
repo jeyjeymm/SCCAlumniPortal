@@ -138,4 +138,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             
     }
 
+
+    public function isRole($role){
+    
+        return $this->role->name === $role ? true : false ;
+
+    }
+
 }

@@ -6,6 +6,8 @@
 <script type="text/javascript" src=" {{ url('js/init.js') }} "></script>
 <script type="text/javascript" src="{{ url('js/variables.js') }}"></script>
 
+<script type="text/javascript" src=" {{ url('js/register.js') }} "></script>
+
 
 
 <!-- Home Scripts -->

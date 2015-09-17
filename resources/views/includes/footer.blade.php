@@ -8,10 +8,10 @@
 
             <h5 class="white-text">San Carlos College Alumni Portal</h5>
 
-            <p class="grey-text text-lighten-4">Comments? Suggestions? Email us at mis@sancarloscollege.edu.ph</p>
+            <p class="grey-text text-lighten-4">Comments? Suggestions? Email us at sancarloscollege.edu.ph</p>
 
         </div>
-<!--
+
         <div class="col l2 s12">
 
             <h5 class="white-text">Pages</h5>
@@ -36,7 +36,16 @@
 
             </ul>
 
-        </div>-->
+        </div>
+
+    </div>
+
+    <div class="row center">
+        
+    <img class="circle marg_20" src="{{ url('images/cics.png') }}" alt="cics" />
+    <img class="circle marg_20" src="{{ url('images/cte.png') }}" alt="cte" />
+    <img class="circle marg_20" src="{{ url('images/beso.png') }}" alt="beso" />
+
 
     </div>
 </div>
@@ -45,7 +54,7 @@
 
     <div class="container">
        
-        Copyright © <?php echo date('Y') ?> - San Carlos College - Formerly PIEAS (MIS Department)
+        Copyright © <?php echo date('Y') ?> - San Carlos College - Formerly PIEAS
         
         <a href="!#" class="grey-text text-lighten-4 right" id="btn_back_to_top">Back to top</a>
     

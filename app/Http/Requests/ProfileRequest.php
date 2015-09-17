@@ -36,7 +36,7 @@ class ProfileRequest extends Request
         return [
 
             'nickname' => 'required',
-            'image_file' => 'required|mimes:jpg,jpeg,png,gif',
+            'image_file' => 'mimes:jpg,jpeg,png,gif',
             'present_address' => 'required',
             'permanent_address' => 'required',
             'contact_number' => 'required',
@@ -45,8 +45,7 @@ class ProfileRequest extends Request
             'birthday' => 'required',
             'region_of_origin' => 'required',
             'province' => 'required',
-            'location_of_residence' => 'required',
-            'about_me' => 'required'
+            'location_of_residence' => 'required'
 
         ];
     }

@@ -1,5 +1,4 @@
 @include('includes.css')
-
 <div class="container">
 
         <h4>San Carlos College Survey</h4>     

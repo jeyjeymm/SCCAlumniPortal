@@ -12,11 +12,17 @@
 
 			@include('profiles.includes.forms.profile_form',['action' => 'survey'])
 
-			<button type="submit" class="btn waves-effect waved-light red darken-2 right">Next</button>
+			<button type="submit" class="btn waves-effect waved-light red darken-2">
 
-			@include('errors.form_errors')
+				<i class="material-icons right">arrow_forward</i>
+
+					Next
+
+			</button>
 
 		</form>
+
+		@include('errors.form_errors')
 
 	</div>
 

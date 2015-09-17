@@ -15,11 +15,10 @@
         <tr>
             <th data-field="id">ID</th>
             <th data-field="name">Name</th>
-            <th data-field="email">Email</th>
-            <th data-field="username">Username</th>
-            <th data-field="department">Department</th>
-            <th data-field="course">Course</th>
-            <th data-field="role">Role</th>
+            <th data-field="batch">Batch</th>
+            <th data-field="name_of_company_or_org">Name of Company</th>
+            <th data-field="work_address">Work Address</th>
+            <th data-field="present_occupation">Occupation</th>
         </tr>
     </thead>
 
@@ -39,22 +38,15 @@
 		        		<input type="hidden" id="email" value="{{ $user->email }}"/>
 		        		<input type="hidden" id="username" value="{{ $user->username }}"/>
 		        		<input type="hidden" id="department" value="{{ $user->department_id }}"/>
-		        		<input type="hidden" id="course" value="{{ $user->course_id }}"/>
+		        		<!--<input type="hidden" id="course" value="{{ $user->course_id }}"/>-->
 		        		<input type="hidden" id="role" value="{{ $user->role_id }}"/>
 
 		            <td>{{ $user->id }}</td>
 		            <td>{{ $user->name }}</td>
-		            <td>{{ $user->email }}</td>
-		            <td>{{ $user->username }}</td>
-		            <td>{{ $user->department->name }}</td>
-
-		            @if ($user->course()->first())
-		            	<td>{{ $user->course->name }}</td>
-		            @else
-		            	<td> - </td>
-		            @endif
-
-		            <td>{{ $user->role->name }}</td>
+		            <td>{{ $user->batch !== '' ? $user->batch : '-' }}</td>
+		            <td>{{ $user->employment_data()->first() ? $user->employment_data->name_of_company_or_org : '-' }}</td>
+		            <td>{{ $user->employment_data()->first() ? $user->employment_data->work_address : '-' }}</td>
+		            <td>{{ $user->employment_data()->first() ? $user->employment_data->present_occupation : '-' }}</td>
 
 		        </tr>
 

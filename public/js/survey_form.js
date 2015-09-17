@@ -71,7 +71,7 @@ btn_educational_attainment_add.on('click',function(e){
 
                     '<div class="input-field">'+
 
-                        '<input name="honors_or_awards_' + i + '" type="text" required/>'+
+                        '<input name="honors_or_awards_' + i + '" type="text"/>'+
 
                         '<label class="truncate">Honors or Awards Received</label>'+
 
@@ -80,7 +80,7 @@ btn_educational_attainment_add.on('click',function(e){
             '</div>';
 
         
-        form_educational_attainments.prop('action',window.location.origin + '/survey/educational_attainment/' + i )   
+        form_educational_attainments.prop('action',window.location.origin + '/survey/educational_attainments/' + i )   
 
         educational_attainment_fields.append(html);
 });

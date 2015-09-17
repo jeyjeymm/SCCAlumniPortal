@@ -17,6 +17,12 @@ use Auth;
 class ThreadCommentsController extends Controller
 {
 
+    public function __construct(){
+    
+        $this->middleware('auth');
+            
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -61,7 +67,7 @@ class ThreadCommentsController extends Controller
     public function update(ThreadCommentRequest $request, $thread_id, $comment_id)
     {
         
-        if (Auth::user()->role->id === 1) {
+        if (Auth::user()->role->name === 'admin') {
     
             $comment = ThreadComment::findOrFail($comment_id);
 

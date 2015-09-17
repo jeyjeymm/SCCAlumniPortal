@@ -16,9 +16,15 @@
 
 @stop
 
-@section('content')
+@section('content-fluid')
 
 	@include('slider.includes.slider')
+
+@stop
+
+@section('content')
+
+	
 
 	<h5 class="col s12 m12 l12">Announcements:</h5>
 

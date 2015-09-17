@@ -37,5 +37,17 @@ class Thread extends Model
 
 	}
 
+	public function scopePublicThreads($query){
+	
+	    return $query->where('department_id',1);
+	    	
+	}
+
+	public function scopeDepartmentThreads($query, $id){
+	
+	    return $query->where('department_id', $id);
+	    	
+	}
+
 
 }

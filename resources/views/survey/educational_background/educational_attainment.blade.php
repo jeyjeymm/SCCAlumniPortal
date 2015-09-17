@@ -49,7 +49,7 @@
 
                             <div class="input-field">
 
-                                <input id="4" name="honors_or_awards_1" type="text" required/>
+                                <input id="4" name="honors_or_awards_1" type="text"/>
 
                                 <label class="truncate" for="4">Honors or Awards Received</label>
 

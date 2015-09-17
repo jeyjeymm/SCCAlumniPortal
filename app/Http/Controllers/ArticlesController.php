@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -21,17 +20,14 @@ use File;
 class ArticlesController extends Controller
 {
 
+	public function __construct(){
+	
+	    $this->middleware('auth',["except"=> ['index','show']]);
+	    $this->middleware('check_survey',['only' => 'index']);
+	    	
+	}
+
     public function index(){
-
-    	if (Auth::check()) {
-
-    		if (!Auth::user()->educational_attainments()->first() && Auth::user()->role->id === 3) {
-
-    			return redirect('survey');
-
-    		}
-
-	    }
 
     	$slider_objects = SliderObject::all();
 
@@ -234,7 +230,7 @@ class ArticlesController extends Controller
 		$img = Image::make($image_file);
 
 			// prevent possible upsizing
-		$img->resize(400, 300, function ($constraint) {
+		$img->resize(350, 200, function ($constraint) {
 		    $constraint->upsize();
 		});
 			//save image to path . $filename	

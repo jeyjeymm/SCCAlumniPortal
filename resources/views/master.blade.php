@@ -24,12 +24,10 @@
             </div>
 
             <div class="container" id="top">
-
-                @if(Auth::check())
+   
 
                     @yield('fab')
 
-                @endif
 
                 <div class="row" id="content">
 

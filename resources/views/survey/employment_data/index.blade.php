@@ -92,6 +92,13 @@
 
                         </div>
 
+                        <div class="input-field">
+
+                            <input type="text" name="work_address" required/>
+                            <label>Work Address:</label>
+
+                        </div>
+
                     </div>
 
                     @include('survey.employment_data.includes.job')

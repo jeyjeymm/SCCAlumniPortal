@@ -12,6 +12,8 @@ class CourseTableSeeder extends Seeder
     public function run()
     {
         
+        
+        DB::table('courses')->insert(['name' => 'N/A','department_id' => 5]);   
     	DB::table('courses')->insert(['name' => 'BSIT','department_id' => 2]);
         DB::table('courses')->insert(['name' => 'CICS','department_id' => 2]);
 		DB::table('courses')->insert(['name' => 'IS','department_id' => 2]);

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 use App\User;
 
@@ -15,6 +16,13 @@ use Auth;
 
 class UsersController extends Controller
 {
+
+    public function __construct(){
+    
+        $this->middleware('auth');
+            
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +30,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::paginate(20);
 
         return view('users.index',compact('users'));
     }
@@ -33,7 +41,7 @@ class UsersController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(UserRequest $request)
+    public function store(CreateUserRequest $request)
     {
 
         $user = new User($request->all());
@@ -55,7 +63,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
@@ -77,13 +85,37 @@ class UsersController extends Controller
     }
 
 
-    public function search($column,$id,$order){
+    public function search($column,$input,$department,$order){
+
+
 
         $order_array = explode('.',$order);
     
-        $users = $id !== '*' ? 
-            User::where($column, 'LIKE', '%'.$id.'%')->orderBy($order_array[0],$order_array[1])->paginate(10) : 
-            User::orderBy($order_array[0],$order_array[1])->paginate(10) ;
+        if($input !== '*') {
+
+            if ($department !== '0') {
+
+                $users = User::where($column, 'LIKE', '%'.$input.'%')->where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20); 
+
+            } else {
+
+                $users = User::where($column, 'LIKE', '%'.$input.'%')->orderBy($order_array[0],$order_array[1])->paginate(20); 
+
+            }
+        
+        } else {
+
+            if ($department !== '0') {
+
+                $users = User::where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20);
+
+            } else {
+
+                $users = User::orderBy($order_array[0],$order_array[1])->paginate(20);
+
+            }
+        
+        }
 
         $users->setPath(url('users'.'/'));
     

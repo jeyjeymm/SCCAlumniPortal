@@ -2,7 +2,7 @@
 
     <div id="user_management_search" class="pad_20">
 
-        <div class="input-field col s10 m10 l10">
+        <div class="input-field col s12 m10 l10">
             
             <i class="material-icons prefix">search</i>
             <input type="text" id="user_search" name="search"/>
@@ -10,7 +10,7 @@
 
         </div>
 
-        <div class="input-field col s2 m2 l2">
+        <div class="input-field col s12 m2 l2">
             
             <select id="search_type">
                 <option value="name" selected>Name</option>
@@ -21,7 +21,7 @@
 
         </div>
 
-        <div class="input-field col s6 m6 l6">
+        <div class="input-field col s6 m4 l4">
             
             <select id="order_by">
                 <option value="id" selected>ID</option>
@@ -34,7 +34,7 @@
         </div>
 
 
-        <div class="input-field col s6 m6 l6">
+        <div class="input-field col s6 m4 l4">
             
             <select id="order_by_direction">
                 <option value="asc" selected>Ascending</option>
@@ -44,6 +44,28 @@
 
         </div>
 
+        <div class="input-field col s12 m4 l4">
+            
+            <select id="department_filter" class="browser-default">
+
+                <option value="0">All Departments</option>
+
+                <option value="1">Public Department</option>
+
+                <option value="2">CICS Department</option>
+
+                <option value="3">CABA Department</option>
+
+                <option value="4">CTE Department</option>
+
+                <option value="5">High School Department</option>
+
+                <option value="6">UPHS Department</option>
+
+            </select>
+            
+        </div>
+
     </div>
     <div class="row">
     
@@ -51,14 +73,17 @@
 
 	</div>
 
-    @if (Auth::user()->role_id === 1)
+    @if (Auth::user()->role->name === 'admin')
 
         <div class="row">
             
-            <button id="btn_create_account" class="btn waves-effectw waves-light red darken-2 right">Create Account</button>
+            <button id="btn_create_account" class="btn waves-effect waves-light red darken-2 right">Create Account</button>
+            <a id="btn_print_table" class="btn-flat waves-effect waves-light left"><i class="material-icons">print</i></a>
 
         </div>
 
     @endif
+
+
 
 </div>  

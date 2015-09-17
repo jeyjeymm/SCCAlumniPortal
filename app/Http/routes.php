@@ -38,7 +38,7 @@ Route::get('articles/{article_id}/comments/{comment_id}/destroy', 'ArticleCommen
 
 Route::resource('users','UsersController',['except' => ['show','create','edit']]);
 Route::get('users/{id}/destroy', 'UsersController@destroy');
-Route::get('users/search/{column}/{id}/{order}','UsersController@search');
+Route::get('users/search/{column}/{id}/{department}/{order}','UsersController@search');
 
 
 Route::resource('slider','SliderObjectsController', ['except' => 'show' ]);
@@ -77,6 +77,16 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+
 
 
 

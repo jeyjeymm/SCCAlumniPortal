@@ -12,6 +12,7 @@ class EmploymentData extends Model
 		'present_occupation',
 		'name_of_company_or_org',
 		'place_of_work',
+		'work_address',
 		'is_first_job',
 		'reasons_for_changing_job',
 		'reasons_for_changing_job_others',
@@ -22,8 +23,8 @@ class EmploymentData extends Model
 		'job_finding_duration_others',
 		'salary',
 		'is_curriculum_relevant',
-		'reasons_not_employed',
-		'reasons_not_employed_others'
+		'reasons_not_yet_employed',
+		'reasons_not_yet_employed_others'
 
 	];
 

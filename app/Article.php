@@ -66,9 +66,9 @@ class Article extends Model
     }
 
 
-    public function scopeDepartmentArticles($query,$department_id){
+    public function scopeDepartmentArticles($query,$id){
 
-    	return $query->where('department_id',$department_id)->orWhere('department_id',1)->published();
+    	return $query->where('department_id',$id)->orWhere('department_id',1)->published();
 
     }
 

@@ -7,20 +7,16 @@
 
 -->
 
-<div class="marg_20 col s12 m12 l12">
+<div class="slider">
 
-    <div class="slider">
+    <ul class="slides">
+        
+    	@foreach ($slider_objects as $slider_object)
 
-        <ul class="slides hoverable z-depth-1-half">
-	        
-        	@foreach ($slider_objects as $slider_object)
+        	@include('slider.includes.slider_object_template')
 
-            	@include('slider.includes.slider_object_template')
+        @endforeach
 
-            @endforeach
-
-        </ul>
-
-    </div>
+    </ul>
 
 </div>

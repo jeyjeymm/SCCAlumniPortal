@@ -16,15 +16,20 @@ use Image;
 
 class SliderObjectsController extends Controller
 {
+
+    public function __construct(){
+    
+        $this->middleware('auth',['except' => 'index']);
+            
+    }
+
     public function index(){
 
     	$slider_objects = SliderObject::all();
 
     	$action = 'create';
 
-    	$role = Auth::check() ? Auth::user()->role->name : 'user';
-
-    	return view('slider.create',compact('slider_objects','action','role'));
+    	return view('slider.create',compact('slider_objects','action'));
 
     }
 
@@ -140,7 +145,7 @@ class SliderObjectsController extends Controller
     
         $img = Image::make($image_file);
 
-        $img->resize('400','250',function($constraints){
+        $img->resize('850','250',function($constraints){
 
             $constraints->upsize();
 

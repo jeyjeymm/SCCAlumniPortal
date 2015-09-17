@@ -57,7 +57,9 @@
 
 		<div class="card pad_20" id="employment_data_yes_container">
 
-		    <form action="{{ url('survey/employment_data/yes') }}" method="post">
+		    <form action="{{ url('employment_data/'.$employment_data->id.'/update') }}" method="post">
+
+		    	<input type="hidden" name="survey_id" value="">
 
 		        {!! csrf_field() !!}
 
@@ -124,6 +126,13 @@
 		                <label>Place of Work</label>
 
 		            </div>
+
+		            <div class="input-field">
+
+                        <input type="text" name="work_address" value="{{ $employment_data->work_address }}" required/>
+                        <label>Work Address:</label>
+
+                    </div>
 
 		        </div>
 

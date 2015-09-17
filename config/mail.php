@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'sccalumniportal@gmail.com', 'name' => 'San Carlos College Alumni Portal'],
 
     /*
     |--------------------------------------------------------------------------

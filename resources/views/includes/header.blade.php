@@ -9,7 +9,7 @@
 
                 <a href="#" data-activates="sidenav" class="button-collapse"><i class="tiny material-icons">menu</i></a>
                 
-                <!-- <img id="logo" class="brand-logo center responsive-img z-depth-1 circle hide-on-med-and-down" src="images/logo.png" /> -->
+                 <img id="logo" class=" brand-logo center responsive-img z-depth-1 circle hide-on-med-and-down" style="margin: 5px" src="{{ url('images/logo.png') }}" />
                 
                 <a class="brand-logo margin-sides roboto-thin white-text hide-on-small-only">San Carlos College Alumni Portal</a>                  
 
@@ -33,7 +33,15 @@
 
                     @if (Auth::check())
 
-                        <li><a href=" {{ url('auth/logout') }} ">Logout</a></li>
+                        <!-- Dropdown Trigger -->
+                        <li>
+                            <a class="dropdown-button" href="#!" data-activates="nav_dropdown">
+
+                                {{ Auth::user()->name }} <i class="material-icons right">arrow_drop_down</i>
+
+                            </a>
+
+                        </li>
 
                     @else
 
@@ -47,11 +55,19 @@
 
                 <ul class="side-nav" id="sidenav">
 
-                    <li><a href=" {{ url('articles') }} ">Home</a></li>
+                    @if (Auth::check())
+
+                        <a class="center" disabled>Hi, {{ Auth::user()->name }}!</a>
+
+                    @endif
+
+                    <li class="divider"></li>
+
+                    <li disabled><a href=" {{ url('articles') }} ">Home</a></li>
 
                     @if (Auth::check())
 
-                        @if (Auth::user()->role->name !== 'admin' || Auth::user()->role->name !== 'editor')
+                        @if (Auth::user()->role->name === 'user')
 
                             <li><a href=" {{ url('profiles') }} ">Profile</a></li>
 
@@ -95,3 +111,10 @@
     </nav>
 
 </div>
+
+<!-- Dropdown Structure -->
+<ul id="nav_dropdown" class="dropdown-content">
+
+  <li><a href=" {{ url('auth/logout') }} ">Logout</a></li>
+
+</ul>

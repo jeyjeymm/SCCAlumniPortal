@@ -20,6 +20,7 @@ class CreateEmploymentDataTable extends Migration
             $table->string('present_occupation');
             $table->string('name_of_company_or_org');
             $table->string('place_of_work');
+            $table->string('work_address');
             $table->string('is_first_job');
             $table->string('reasons_for_changing_job');
             $table->string('reasons_for_changing_job_others');

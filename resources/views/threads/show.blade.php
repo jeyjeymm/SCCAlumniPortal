@@ -70,7 +70,9 @@
 		    @endforeach
 
 		    <div class="input-field">
+
 		    	@include('includes.pagination',['paginator' => $comments])
+		    	
 		    </div>
 
 		@else
