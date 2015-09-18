@@ -51,7 +51,7 @@
 
 <div class="col s12 m6 l6 my_articles" id="article_{{ $article->id }}">
 
-    <div class="card medium hoverable">
+    <div class="card hoverable">
 
         <div class="card-image waves-effect waves-block waves-light">
 

@@ -1,147 +1,197 @@
-var threads_collection = $('#threads_collection');
+var threads = (function() {
 
-var thread_modal = $('#thread_modal');
-var t_modal_header = thread_modal.find('#modal_header');
-var t_modal_edit_btn = thread_modal.find('#modal_edit');
-var t_modal_delete_btn = thread_modal.find('#modal_delete');
+	var timer;
 
-var t_delete_modal = $('#delete_modal');
-var t_delete_modal_yes = t_delete_modal.find('#delete_modal_yes');
+	var threads = $('#threads');
+	var modal = $('#thread_modal');
 
+	var threads_collection = threads.find('#threads_collection');
+	var form_threadContainer = $('#form_threadContainer');
 
-
-var thread_container = $('#thread_container');
-var lbl_thread_title = thread_container.find('#lbl_thread_title');
-var txt_thread_title = thread_container.find('#txt_thread_title');
+	var fab_post_thread = $('#fab_post_thread');
 
 
-
-var form_thread = thread_container.find('#form_thread');
-var t_laravel_method = form_thread.find('.laravel_method');
-var t_btn_submit = form_thread.find('#btn_submit');
+	var is_thread_owner;
 
 
 
-var fab_post_thread = $('#fab_post_thread');
-
-
-var thread_id;
-var is_ownership_valid;
-
-
-
-/*
-*
-*	Show threads form on fab click
-*
-*/
-fab_post_thread.on('click',function(e){
-
-	e.preventDefault();
-
-	thread_container.fadeToggle();
-
-});
+	/*
+	*
+	*	Show threads form on fab click
+	*
+	*/
+	fab_post_thread.on('click',toggleThreadForm);
 
 
 
 
-/*
-*
-*	Show modal on thread long press
-*
-*/
+	/*
+	*
+	*	Show modal on thread long press
+	*
+	*/
 
-threads_collection.on("mousedown",'a',function(){
+	threads_collection.on("mousedown",'a',openModal)
+						.on("mouseup mouseleave",clearTimer);
 
-	var selection = $(this);
 
-	is_ownership_valid = selection.find('#thread_ownership_validation').val();
 
-	if(is_ownership_valid){
 
-		var title = selection.find('#thread_title').text();
 
-		var temp =  selection.prop('id');
+	function openModal(){
 
-		thread_id = temp.split('_')[1];
+		var selection = $(this);
 
-	    timer = setTimeout(function(){
+		is_thread_owner = selection.find('#thread_ownership_validation').val();
 
-	        t_modal_header.text(title);
-	        thread_modal.openModal();
+		if(is_thread_owner){
 
-	    }, .5 * 1000 );
+			var title = selection.find('#thread_title').text();
 
+			var temp =  selection.prop('id');
+
+			var id = temp.split('_')[1];
+
+		    timer = setTimeout(function(){
+
+		        thread_modal.setTitle(title);
+		        thread_modal.setId(id);
+		        thread_modal.init();
+
+		    }, .5 * 1000 );
+
+		}
 	}
 
-}).on("mouseup mouseleave",function(){
-
-	if(is_ownership_valid){
-
-	    clearTimeout(timer);
-
-	}
-
-});
 
 
 
 
-/*
-*
-*	Prepare thread form on thread edit
-*
-*/
-t_modal_edit_btn.on('click',function(){
+	function clearTimer(){
 
-	var get = $.get('/threads/' + thread_id + '/edit');
+		if(is_thread_owner){
 
-	get.done(function(data){
+		    clearTimeout(timer);
 
-		if(!thread_container.is(':visible')){
-
-			thread_container.show();
 		}
 
-		form_thread.prop('action', window.location.origin + '/threads/' + thread_id);
-
-		t_laravel_method.prop('name','_method');
-		t_laravel_method.prop('value','PATCH');
-
-		txt_thread_title.val(data.title);
-		lbl_thread_title.addClass('active');
-
-		CKEDITOR.instances.body.setData(data.body);
-
-		t_btn_submit.text('Update Thread');
-
-	});
-
-});
+	}
 
 
 
 
+	function toggleThreadForm(){
 
-t_modal_delete_btn.on('click',function(){
+		form_threadContainer.fadeToggle();
 
-	t_delete_modal.openModal();
-
-});
-
+	}
 
 
 
+})();
 
-t_delete_modal_yes.on('click',function(){
 
-	var get = $.get('/threads/'+thread_id+'/destroy');
+var thread_modal = {
 
-	get.done(function(url){
+	title : '',
+	id : '',
 
-		window.location = url;
+	init : function() {
 
-	});
+		this.cacheDOM();
+		this.bindEvents();
+		this.modal_header.text(this.title);
+		this.modal.openModal();
 
-});
+	},
+
+	cacheDOM : function() {
+
+		this.modal = $('#thread_modal');
+		this.modal_header = this.modal.find('#modal_header');
+		this.btn_edit = this.modal.find('#modal_edit');
+		this.btn_delete = this.modal.find('#modal_delete');
+
+		this.delete_modal = $('#delete_modal');	
+		this.btn_yes = this.delete_modal.find('#btn_yes');
+
+		this.form_threadContainer = $('#form_threadContainer');
+		this.form_thread = this.form_threadContainer.find('#form_thread');
+		this.laravel_method = this.form_thread.find('.laravel_method');
+
+		this.lbl_title = this.form_thread.find('#lbl_title');
+		this.thread_title = this.form_thread.find('#title');
+		this.thread_body = CKEDITOR.instances.body;
+		
+		this.btn_submit = this.form_thread.find('#btn_submit');
+
+	},
+
+	bindEvents : function() {
+
+
+		this.btn_edit.on('click',this.prepareThreadEdit.bind(this));
+		this.btn_delete.on('click',this.showDeleteModal.bind(this));
+		this.btn_yes.on('click',this.deleteThread.bind(this));
+
+
+	},
+
+	prepareThreadEdit : function() {
+
+		var get = $.get('/threads/' + this.id + '/edit');
+
+		get.done(function(data){
+
+			if(!this.form_threadContainer.is(':visible')){
+
+				this.form_threadContainer.show();
+			}
+
+			this.form_thread.prop('action', window.location.origin + '/threads/' + this.id );
+
+			this.laravel_method.prop('name','_method');
+			this.laravel_method.prop('value','PATCH');
+
+			this.thread_title.val(data.title);
+			this.lbl_title.addClass('active');
+
+			this.thread_body.setData(data.body);
+
+			this.btn_submit.text('Update Thread');
+
+		}.bind(this));
+
+	},
+
+	showDeleteModal : function(){
+
+		this.delete_modal.openModal();
+
+	},
+
+	deleteThread : function(){
+
+		var get = $.get('/threads/' + this.id + '/destroy');
+
+		get.done(function(url){
+
+			window.location = url;
+
+		});
+
+	},
+
+	setId : function(id) {
+
+		this.id = id;
+
+	},
+
+	setTitle : function(title) {
+
+		this.title = title;
+
+	}
+
+}

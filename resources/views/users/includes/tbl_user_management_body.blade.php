@@ -4,13 +4,15 @@
 	Collection/Paginator $users
 
 -->
-<div id="tbl_users_progress_bar" class="progress" style="display: none">
+<div id="progress_bar" class="progress" style="display: none">
 
     <div class="indeterminate"></div>
 
 </div>
-<p id="lbl_print_department" class="center" style="display: none"></p>
-<table id="tbl_user_management" class="striped">
+
+<p id="lbl_printedDepartment" class="center" style="display: none"></p>
+
+<table id="tbl_userManagement" class="striped">
 
     <thead>
         <tr>
@@ -39,7 +41,6 @@
 		        		<input type="hidden" id="email" value="{{ $user->email }}"/>
 		        		<input type="hidden" id="username" value="{{ $user->username }}"/>
 		        		<input type="hidden" id="department" value="{{ $user->department_id }}"/>
-		        		<!--<input type="hidden" id="course" value="{{ $user->course_id }}"/>-->
 		        		<input type="hidden" id="role" value="{{ $user->role_id }}"/>
 
 		            <!--<td>{{ $user->id }}</td>-->
@@ -63,6 +64,7 @@
 	
 
 </table>
-<div id="tbl_users_pagination">
+
+<div id="pagination">
 	{!! $users->render() !!}
 </div>

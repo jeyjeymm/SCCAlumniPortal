@@ -1,301 +1,357 @@
-var tbl_user_management_container = $('#tbl_user_management_container');
-var tbl_user_management = $('#tbl_user_management');
-var tbl_users_pagination = tbl_user_management_container.find('#tbl_users_pagination');
-var tbl_users_progress_bar = tbl_user_management_container.find('#tbl_users_progress_bar');
+var users = (function(){
 
-var form_user_management_container = $('#form_user_management_container');
-var form_user_management = $('#form_user_management');
-var u_back_btn = form_user_management.find('#btn_back');
-var u_laravel_method = form_user_management.find('#laravel_method');
+	var timer;
 
-//var lbl_id = form_user_management.find('#lbl_id');
-var lbl_name = form_user_management.find('#lbl_name');
-var lbl_email = form_user_management.find('#lbl_email');
-var lbl_username = form_user_management.find('#lbl_username');
-
-//var id_field = form_user_management.find('#id');
-var name_field = form_user_management.find('#name');
-var email_field = form_user_management.find('#email');
-var username_field = form_user_management.find('#username');
-var department_field = form_user_management.find('#department_id');
-//var course_field = form_user_management.find('#course_id');
-var role_field = form_user_management.find('#role_id');
-
-var u_btn_submit = form_user_management.find('#btn_submit');
-var u_btn_delete = form_user_management.find('#btn_delete');
-var u_btn_goto_profile = form_user_management.find('#btn_goto_profile');
-
-
-var user_management_search = $('#user_management_search');
-var search_type = user_management_search.find('#search_type');
-var order_by = user_management_search.find('#order_by');
-var order_by_direction = user_management_search.find('#order_by_direction');
-var department_filter = user_management_search.find('#department_filter');
-var user_search = $('#user_search');
-
-var lbl_print_department = tbl_user_management_container.find('#lbl_print_department');
-
-var btn_print_table = tbl_user_management_container.find('#btn_print_table');
-var btn_create_account = tbl_user_management_container.find('#btn_create_account'); 
-
-var id;
-var profile_id;
-var name;
-var email;
-var username;
-var department_id;
-var course_id;
-var role_id;
-
-
-var search_input_val = '';
-var search_type_val = '';
-var search_order_val = '';
-var search_order_direction_val = '';
-var department_filter_val = '';
-
-
-tbl_user_management.on('click','tr',function(){
-
-	var selection = $(this);
-
-	tbl_user_management_container.hide();
-
-	var td_id = selection.find('#id');
-	var td_name = selection.find('#name');
-	var td_email = selection.find('#email');
-	var td_username = selection.find('#username');
-	var td_department = selection.find('#department');
-	//var td_course = selection.find('#course');
-	var td_role = selection.find('#role');
-	var profile_id = selection.find('#profile_id');
-
-	id = td_id.val();
-	profile_id = profile_id.val();
-	name = td_name.val();
-	email = td_email.val();
-	username = td_username.val();
-	//course_id = td_course.val();
-	department_id = td_department.val();
-
-	role_id = td_role.val();
-
-	//var arr = [id,name,email,username,department_id,course_id,role_id,profile_id];
-	var arr = {
-
-		id : id,
-		name : name,
-		email : email,
-		username : username,
-		department_id : department_id,
-		role_id : role_id,
-		profile_id : profile_id
-
-	};
-
-	setUserManagementForm(arr,'edit');
-	form_user_management_container.show();
-
-});
-
-
-u_back_btn.on('click',function(e){
-
-	e.preventDefault();
-
-	form_user_management_container.toggle();
-	tbl_user_management_container.toggle();
-
-});
-
-
-function setUserManagementForm(data,action){
-
-	if(action === 'edit'){
-
-		form_user_management.prop('action', window.location.origin + '/users/' + id);
-		u_laravel_method.prop('name','_method');
-		u_laravel_method.prop('value','PATCH');
-
-		//id_field.val(data[0]);
-		//lbl_id.addClass('active');
-
-		name_field.val(data.name);
-		lbl_name.addClass('active');
-
-		email_field.val(data.email);
-		lbl_email.addClass('active');
-
-		username_field.val(data.username);
-		lbl_username.addClass('active');
-
-		department_field.val(data.department_id);
-		//course_field.val(data[5]);
-		role_field.val(data.role_id);
-
-		$('select').material_select('update');
-
-		u_btn_submit.text('Update User Info');
-		u_btn_delete.prop('href', window.location.origin + '/users/' + data.id + '/destroy').show();
-
-		if (data.profile_id) {
-
-			u_btn_goto_profile.is(':visible') ? '' : u_btn_goto_profile.show() ;
-
-			u_btn_goto_profile.prop('href', window.location.origin + '/profiles/' + data.profile_id);
-
-		} else {
-
-			u_btn_goto_profile.is(':visible') ? u_btn_goto_profile.hide() : '' ;
-
-		}
-
-	} else {
-
-
-		//id_field.val(data[0]);
-		//lbl_id.addClass('active');
-
-		name_field.val('');
-
-		email_field.val('');
-
-		username_field.val('');
-
-		department_field.val(null);
-		//course_field.val(1);
-		role_field.val(null);
-
-		$('select').material_select('update');
-
-		u_btn_submit.text('Create User');
-		u_btn_delete.hide();
-		u_btn_goto_profile.hide();
-
-	}
-
-}
-
-
-user_search.on('keyup',function(){
-
-	search_input_val = $(this).val();
-
-	if (search_input_val !== '') {
-
-		timer = setTimeout(function(){
-
-			getSearchValues();
-			userQuery(search_type_val,search_input_val,search_order_val,search_order_direction_val,department_filter_val);
-
-		},.5 * 1000);
-
-	} else {
-
-		getSearchValues();
-		userQuery(search_type_val,search_input_val,search_order_val,search_order_direction_val,department_filter_val);
-
-	}
-
-}).on('keydown',function(){
-
-	clearTimeout(timer);
-
-});
-
-
-
-order_by.on('change',function(){
-
-	getSearchValues();
-	userQuery(search_type_val,search_input_val,search_order_val,search_order_direction_val,department_filter_val);
-
-});
-
-
-order_by_direction.on('change',function(){
-
-	getSearchValues();
-	userQuery(search_type_val,search_input_val,search_order_val,search_order_direction_val,department_filter_val);
-
-});
-
-
-department_filter.on('change',function(){
-
-	getSearchValues();
-	userQuery(search_type_val,search_input_val,search_order_val,search_order_direction_val,department_filter_val);
-
-});
-
-
-btn_print_table.on('click',function(e){
-
-	e.preventDefault();
-
-	user_management_search.hide();
+	var userManagement = $('#users');
 	var nav = $('nav');
 	var footer = $('footer');
 
-	nav.hide();
-	footer.hide();
-	btn_create_account.hide();
-	btn_print_table.hide();
-	lbl_print_department.html('<b>' + department_filter.children("option").filter(":selected").text() + '</b>').show();
 
 
-	window.print();
+	
+
+	var tbl_userManagementContainer = userManagement.find('#tbl_userManagementContainer');
+
+	var user_management_search = tbl_userManagementContainer.find('#user_management_search');
+	var search_type = user_management_search.find('#search_type');
+	var order_by = user_management_search.find('#order_by');
+	var order = user_management_search.find('#order');
+	var department_filter = user_management_search.find('#department_filter');
+	var input_search = user_management_search.find('#input_search');
+
+	var lbl_printDepartment = tbl_userManagementContainer.find('#lbl_printDepartment');
+	var progressBar = tbl_userManagementContainer.find('#progress_bar');
+	var tbl_userManagement = tbl_userManagementContainer.find('#tbl_userManagement');
+	var pagination = tbl_userManagementContainer.find('#pagination');
+	var btn_printTable = tbl_userManagementContainer.find('#btn_printTable');
 
 
-	lbl_print_department.hide();
-	user_management_search.show();
-	nav.show();
-	footer.show();
-	btn_create_account.show();
-	btn_print_table.show();
-
-});
 
 
-btn_create_account.on('click',function(){
 
-	setUserManagementForm(null, 'create');
-	form_user_management_container.toggle();
-	tbl_user_management_container.toggle();
+	var form_userManagementContainer = userManagement.find('#form_userManagementContainer');
 
-});
+	var form_userManagement = form_userManagementContainer.find('#form_userManagement');
+	var btn_back = form_userManagement.find('#btn_back');
+
+	var laravel_method = form_userManagement.find('#laravel_method');	
+	
+	var lbl_name = form_userManagement.find('#lbl_name');
+	var input_name = form_userManagement.find('#name');
+
+	var lbl_email = form_userManagement.find('#lbl_email');
+	var input_email = form_userManagement.find('#email');
+
+	var lbl_username = form_userManagement.find('#lbl_username');
+	var input_username = form_userManagement.find('#username');
+
+	var select_department = form_userManagement.find('#department_id');
+	var select_role = form_userManagement.find('#role_id');
+
+	var btn_submit = form_userManagement.find('#btn_submit');
+	var btn_delete = form_userManagement.find('#btn_delete');
+	var btn_goToProfile = form_userManagement.find('#btn_goToProfile');
+	var btn_createAccount = tbl_userManagementContainer.find('#btn_createAccount'); 
 
 
-function getSearchValues() {
-
-	search_type_val = search_type.val();
-	search_order_val = order_by.val();
-	search_order_direction_val = order_by_direction.val();
-	department_filter_val = department_filter.val();
-
-}
 
 
-function userQuery(type,input,order,order_direction,department){
 
-	var i = input !== '' ? input : '*';
+	var id;
+	var profile_id;
+	var name;
+	var email;
+	var username;
+	var department_id;
+	var course_id;
+	var role_id;
 
-	tbl_users_progress_bar.show();
 
-	var get = $.get('/users/search/' + type + '/' + i + '/' + department + '/' + order + '.' + order_direction);
 
-		get.done(function(view){
 
-			if (!tbl_users_pagination.is(':empty')) {
 
-				tbl_users_pagination.empty();
+	var search_value = '';
+
+
+
+
+
+	tbl_userManagement.on('click','tr',function(){
+
+		var selection = $(this);
+
+		tbl_userManagementContainer.hide();
+
+		var td_id = selection.find('#id');
+		var td_name = selection.find('#name');
+		var td_email = selection.find('#email');
+		var td_username = selection.find('#username');
+		var td_department = selection.find('#department');
+		//var td_course = selection.find('#course');
+		var td_role = selection.find('#role');
+		var profile_id = selection.find('#profile_id');
+
+		id = td_id.val();
+		profile_id = profile_id.val();
+		name = td_name.val();
+		email = td_email.val();
+		username = td_username.val();
+		department_id = td_department.val();
+		role_id = td_role.val();
+
+		var arr = {
+
+			id : id,
+			name : name,
+			email : email,
+			username : username,
+			department_id : department_id,
+			role_id : role_id,
+			profile_id : profile_id
+
+		};
+
+		setUserManagementForm(arr,'edit');
+		form_userManagementContainer.show();
+
+	});
+
+
+
+
+
+
+	btn_back.on('click',function(e){
+
+		e.preventDefault();
+
+		form_userManagementContainer.toggle();
+		tbl_userManagementContainer.toggle();
+
+	});
+
+
+
+
+
+	input_search.on('keyup',function(){
+
+		search_value = $(this).val();
+
+		if (search_value !== '') {
+
+			timer = setTimeout(function(){
+
+				userQuery(search_type.val(),
+							search_value,
+							order_by.val(),
+							order.val(),
+							department_filter.val());
+
+			},.5 * 1000);
+
+		} else {
+
+			userQuery(search_type.val(),
+						'*',
+						order_by.val(),
+						order.val(),
+						department_filter.val());
+
+		}
+
+	}).on('keydown',function(){
+
+		clearTimeout(timer);
+
+	});
+
+
+
+
+
+	order_by.on('change',function(){
+
+		userQuery(search_type.val(),
+					search_value,
+					order_by.val(),
+					order.val(),
+					department_filter.val());
+
+	});
+
+
+
+
+
+	order.on('change',function(){
+
+		userQuery(search_type.val(),
+					search_value,
+					order_by.val(),
+					order.val(),
+					department_filter.val());
+
+	});
+
+
+
+
+
+	department_filter.on('change',function(){
+
+		userQuery(search_type.val(),
+					search_value,
+					order_by.val(),
+					order.val(),
+					department_filter.val());
+
+	});
+
+
+
+
+
+	btn_printTable.on('click',function(e){
+
+		e.preventDefault();
+
+		user_management_search.hide();
+		
+
+		nav.hide();
+		footer.hide();
+		btn_createAccount.hide();
+		btn_printTable.hide();
+		lbl_printDepartment.html('<b>' + department_filter.children(":selected").text() + '</b>').show();
+
+
+		window.print();
+
+
+		lbl_printDepartment.hide();
+		user_management_search.show();
+		nav.show();
+		footer.show();
+		btn_createAccount.show();
+		btn_printTable.show();
+
+	});
+
+
+
+
+
+	btn_createAccount.on('click',function(){
+
+		setUserManagementForm(null, 'create');
+		form_userManagementContainer.toggle();
+		tbl_userManagementContainer.toggle();
+
+	});
+
+
+
+
+
+	function setUserManagementForm(data,action){
+
+		if(action === 'edit'){
+
+			form_userManagement.prop('action', window.location.origin + '/users/' + id);
+
+			laravel_method.prop('name','_method');
+			laravel_method.prop('value','PATCH');
+
+
+
+			input_name.val(data.name);
+			lbl_name.addClass('active');
+
+			input_email.val(data.email);
+			lbl_email.addClass('active');
+
+			input_username.val(data.username);
+			lbl_username.addClass('active');
+
+
+
+			select_department.val(data.department_id);
+			select_role.val(data.role_id);
+			$('select').material_select('update');
+
+
+
+			btn_submit.text('Update User Info');
+			btn_delete.prop('href', window.location.origin + '/users/' + data.id + '/destroy').show();
+
+
+
+
+			if (data.profile_id) {
+
+				btn_goToProfile.is(':visible') ? '' : btn_goToProfile.show() ;
+
+				btn_goToProfile.prop('href', window.location.origin + '/profiles/' + data.profile_id);
+
+			} else {
+
+				btn_goToProfile.is(':visible') ? btn_goToProfile.hide() : '' ;
 
 			}
 
-			tbl_user_management.html(view);
 
-			tbl_users_progress_bar.hide();
-			
-		});
 
-}
+		} else {
+
+
+
+			input_name.val('');
+			input_email.val('');
+			input_username.val('');
+
+
+
+			select_department.val(null);
+			select_role.val(null);
+			$('select').material_select('update');
+
+
+
+			btn_submit.text('Create User');
+			btn_delete.hide();
+			btn_goToProfile.hide();
+
+		}
+
+	}
+
+
+
+
+
+	function userQuery(type,input,order_by,order,department){
+
+		var i = input !== '' ? input : '*';
+
+		progressBar.show();
+
+		var get = $.get('/users/search/' + type + '/' + i + '/' + department + '/' + order_by + '.' + order);
+
+			get.done(function(view){
+
+				if (!pagination.is(':empty')) {
+
+					pagination.empty();
+
+				}
+
+				tbl_userManagement.html(view);
+
+				progressBar.hide();
+				
+			});
+
+	}
+
+})();

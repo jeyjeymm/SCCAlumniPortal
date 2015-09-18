@@ -3,9 +3,12 @@ var survey_list = (function(){
 	var survey_list = $('#survey_list');
 	var department_filter = survey_list.find('#department_filter');
 	var content = survey_list.find('#content');
+	
 
 
-	department_filter.on('change',filterByDepartment);
+	department_filter.on('change', filterByDepartment);
+
+
 
 	function filterByDepartment(){
 

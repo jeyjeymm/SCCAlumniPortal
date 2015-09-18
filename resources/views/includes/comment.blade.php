@@ -11,13 +11,13 @@
 	if ($comment->user->profile !== null) {
 
 		$url = 'profiles' . '.' . $comment->user->profile->id . '.' . 'profile_picture';
-		$name = $comment->user->profile->image_name;
+		$name = $comment->user->profile->image_name !== '' ? $comment->user->profile->image_name : 'default' ;
 		$profile_id = $comment->user->profile->id;
 
 	} else {
 
 		$url = 'profiles';
-		$name = 'default.jpg';
+		$name = 'default';
 	}
 
 
@@ -35,40 +35,44 @@
 
 ?>
 
-<li class="collection-item avatar grey lighten-4">
+<div id="comments">
 
-	<img src="{{ route('getPhoto',['url' => $url, 'name' => $name]) }}" alt="Avatar" class="circle">
+	<li class="collection-item avatar grey lighten-4">
 
-  	<p>
+		<img src="{{ route('getPhoto',['url' => $url, 'name' => $name]) }}" alt="Avatar" class="circle">
 
-  		<i>
+	  	<p>
 
-  			<a href="{{ isset($profile_id) ? url('profiles/'.$profile_id) : '#' }}">
+	  		<i>
 
-  				{{ $comment->user->name }}
-  			
-  			</a> 
+	  			<a href="{{ isset($profile_id) ? url('profiles/'.$profile_id) : '#' }}">
 
-  			commented {{ $comment->updated_at->diffForHumans() }}:
+	  				{{ $comment->user->name }}
+	  			
+	  			</a> 
 
-  		</i>
+	  			commented {{ $comment->updated_at->diffForHumans() }}:
 
-  		<div style="padding: 7px 30px"> {!! $comment->comment !!} </div>
+	  		</i>
 
-  	</p>
+	  		<div style="padding: 7px 30px"> {!! $comment->comment !!} </div>
 
-  	@if (Auth::check())
+	  	</p>
 
-	  	@if ($comment->user->id === Auth::user()->id || Auth::user()->role->id === 1)
+	  	@if (Auth::check())
 
-	  		<div class="open_comment_modal">
+		  	@if ($comment->user->id === Auth::user()->id || Auth::user()->role->id === 1)
 
-	  			<a id="{{ $page }}_{{ $model->id }}_{{ $comment->id }}" href="#" class="secondary-content"><i class="material-icons">edit</i></a>
+		  		<div class="open_comment_modal">
 
-	  		</div>
+		  			<a id="{{ $page }}_{{ $model->id }}_{{ $comment->id }}" href="#!" class="secondary-content"><i class="material-icons">edit</i></a>
 
-	  	@endif
+		  		</div>
 
-	@endif
+		  	@endif
 
-</li>
+		@endif
+
+	</li>
+
+</div>

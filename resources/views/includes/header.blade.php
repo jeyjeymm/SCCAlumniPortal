@@ -1,11 +1,13 @@
+<header id="header">
+
 <div class="navbar-fixed">
 
-    <nav class="red darken-4" id="my_nav">
+    <nav class="red darken-4">
 
         <div class="nav-wrapper">
 
             <!-- Navbar items -->
-            <div id="nav_items_container">
+            <div id="main_container">
 
                 <a href="#" data-activates="sidenav" class="button-collapse"><i class="tiny material-icons">menu</i></a>
                 
@@ -37,7 +39,7 @@
                         <li>
                             <a class="dropdown-button" href="#!" data-activates="nav_dropdown">
 
-                                {{ Auth::user()->name }} <i class="material-icons right">arrow_drop_down</i>
+                                {{ Auth::user()->username }} <i class="material-icons right">arrow_drop_down</i>
 
                             </a>
 
@@ -57,7 +59,13 @@
 
                     @if (Auth::check())
 
-                        <a class="center" disabled>Hi, {{ Auth::user()->name }}!</a>
+                        <div class="center">
+
+                            <img class="responsive-img circle" src="{{ url('images/logo.png') }}" alt="logo" />
+
+                            <a>Hi, {{ Auth::user()->name }}!</a>
+
+                        </div>
 
                     @endif
 
@@ -94,13 +102,13 @@
             </div>
 
             <!-- Search navbar -->
-            <div id="nav_search_container" style="display: none">
+            <div id="search_container" style="display: none">
 
                 <div class="input-field">
 
-                    <input id="nav_search" type="search" required>
+                    <input id="input_search" type="search" required>
 
-                    <label for="nav_search"><i class="material-icons">search</i></label>
+                    <label for="input_search"><i class="material-icons">search</i></label>
 
                 </div>
 
@@ -118,3 +126,5 @@
   <li><a href=" {{ url('auth/logout') }} ">Logout</a></li>
 
 </ul>
+
+</header>

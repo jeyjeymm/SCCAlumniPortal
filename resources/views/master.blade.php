@@ -15,34 +15,38 @@
     </head>
     <body>
 
+        <!-- For scrolling -->
+        <div id="top"></div>
+
         @include('includes.header')
 
-            
-            @yield('content-fluid')
-                
+            <main>
 
-            </div>
+                @yield('content-fluid')
+                    
+                </div>
 
-            <div class="container" id="top">
-   
-
+                <div class="container">
+       
                     @yield('fab')
 
+                    <div class="row" id="content">
 
-                <div class="row" id="content">
+                        @yield('content')
 
-                    @yield('content')
+                    </div>
+
+                    @yield('pagination')
 
                 </div>
 
-                @yield('pagination')
-
-            </div>
-
+            </main>
 
         @include('includes.footer')
 
         @include('includes.scripts')
+
+        @yield('page_scripts')
 
     </body>
 

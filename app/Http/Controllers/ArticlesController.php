@@ -22,7 +22,8 @@ class ArticlesController extends Controller
 
 	public function __construct(){
 	
-	    $this->middleware('auth',["except"=> ['index','show']]);
+	    $this->middleware('auth',["except" => ['index','show']]);
+	    $this->middleware('admin_or_editor',["only" => ['create','edit']]);
 	    $this->middleware('check_survey',['only' => 'index']);
 	    	
 	}

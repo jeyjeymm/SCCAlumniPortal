@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost/JJMM_Projects/Laravel/SCCAlumniPortal/',
+    'url' => 'http://localhost/',
 
     /*
     |--------------------------------------------------------------------------

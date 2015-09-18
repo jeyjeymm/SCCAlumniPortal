@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckIfAdmin
+class CheckIfEditor
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class CheckIfAdmin
         
         if(Auth::check()) {
 
-            if(Auth::user()->role->name === 'admin') {
+            if(Auth::user()->role->name === 'editor') {
                 
                 return $next($request);
 

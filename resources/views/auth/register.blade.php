@@ -138,3 +138,9 @@
 </div>
 <!--<script type="text/javascript" src="js/signup_form.js"></script>-->
 @stop
+
+@section('page_scripts')
+
+    @include('includes.selected_scripts',['scripts' => ['register']])
+
+@stop

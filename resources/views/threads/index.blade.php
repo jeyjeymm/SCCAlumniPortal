@@ -16,74 +16,84 @@
 
 @section('content')
 
-<ul class="collection with-header">
+<div id="threads">
 
-	<li class="collection-header red darken-1">
+	<ul class="collection with-header">
 
-		<h4 class="white-text">Threads</h4>
+		<li class="collection-header red darken-1">
 
-	</li>
+			<h4 class="white-text">Threads</h4>
 
-	@if ($threads->all())
+		</li>
 
-		@include('threads.includes.thread_modal')
+		@if ($threads->all())
 
-		<div id="threads_collection">
+			@include('threads.includes.thread_modal')
 
-			@foreach ($threads as $thread)
+			<div id="threads_collection">
 
-		    	@include('threads.includes.thread')
+				@foreach ($threads as $thread)
 
-		    @endforeach
+			    	@include('threads.includes.thread')
 
-	    </div>
+			    @endforeach
 
-	    <div class="input-field">
+		    </div>
 
-	    	@include('includes.pagination',['paginator' => $threads])
-	    	
-	    </div>
+		    
 
-	@else
+		    @include('includes.pagination',['paginator' => $threads])
+		    	
+		    
 
-		<li class="collection-item center red white-text">Be the first to post a thread!</li>
+		@else
 
-    @endif
+			<li class="collection-item center red white-text">Be the first to post a thread!</li>
 
-    <li id="thread_container" class="collection-item" style="display:none">
+	    @endif
 
-    	<h5 class="center">Post a thread...</h5>
+	    <li id="form_threadContainer" class="collection-item" style="display:none">
 
-	    <form id="form_thread" action=" {{ url ('threads') }} " method="post">
+	    	<h5 class="center">Post a thread...</h5>
 
-	    	<input class="laravel_method" type="hidden">
+		    <form id="form_thread" action=" {{ url ('threads') }} " method="post">
 
-	    	{!! csrf_field() !!}
+		    	<input class="laravel_method" type="hidden">
 
-	    	<div class="input-field">
+		    	{!! csrf_field() !!}
 
-	    		<input type="text" id="txt_thread_title" name="title" value="{{ old('title') }}"/>
-	    		<label id="lbl_thread_title" for="title">Thread title:</label>
+		    	<div class="input-field">
 
-	    	</div>
+		    		<input type="text" id="title" name="title" value="{{ old('title') }}"/>
+		    		<label id="lbl_title" for="title">Thread title:</label>
 
-	    	<div class="input-field">
+		    	</div>
 
-           		<textarea class="ckeditor" id="body" name="body" type="text" value="{{ old('body') }}"></textarea>
+		    	<div class="input-field">
 
-            </div>
+	           		<textarea class="ckeditor" id="body" name="body" type="text" value="{{ old('body') }}"></textarea>
 
-            <div class="input-field">
+	            </div>
 
-            	<button id="btn_submit" type="submit" class="btn waves-effect waves-light red darken-2">post thread</button>
+	            <div class="input-field">
 
-            </div>
+	            	<button id="btn_submit" type="submit" class="btn waves-effect waves-light red darken-2">post thread</button>
 
-            @include('errors.form_errors')
+	            </div>
 
-	    </form>
-    </li>
+	            @include('errors.form_errors')
 
-</ul>
+		    </form>
+	    </li>
+
+	</ul>
+
+</div>
+
+@stop
+
+@section('page_scripts')
+
+	@include('includes.selected_scripts',['scripts' => ['threads']])
 
 @stop

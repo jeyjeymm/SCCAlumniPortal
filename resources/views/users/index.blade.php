@@ -11,14 +11,24 @@
 @section('content-fluid')
 <div class="container-fluid">
 
-    <div class="row" id="content-fluid">
+	<div id="users">
 
-        @include('users.includes.forms.user_management')
+	    <div class="row">
 
-        @include('users.includes.tbl_user_management')
+	        @include('users.includes.forms.user_management')
+
+	        @include('users.includes.tbl_user_management')
+
+	    </div>
 
     </div>
 
 </div>
+
+@stop
+
+@section('page_scripts')
+
+	@include('includes.selected_scripts',['scripts' => ['user_management']])
 
 @stop

@@ -54,3 +54,9 @@
 </div>
 
 @stop
+
+@section('page_scripts')
+
+	@include('includes.selected_scripts',['scripts' => ['survey_list']])
+
+@stop

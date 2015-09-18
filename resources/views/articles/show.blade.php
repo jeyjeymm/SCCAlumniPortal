@@ -59,7 +59,7 @@
 
 	        </div>
 
-	        <div id="article_comments" style="display: none">
+	        <div id="article_comments_container" style="display: none">
 
 	        	<ul class="collection with-header">   
 
@@ -85,7 +85,7 @@
 
 				    @endif
 
-				    <li class="comment_container collection-item">
+				    <li class="form_commentContainer collection-item">
 
 				    	<form id="form_comment" action=" {{ url ('articles/' . $article->id . '/comments') }} " method="post">
 
@@ -126,5 +126,11 @@
 	        </div>
 	        
 	</div>
+
+@stop
+
+@section('page_scripts')
+
+	@include('includes.selected_scripts',['scripts' => ['comments']])
 
 @stop

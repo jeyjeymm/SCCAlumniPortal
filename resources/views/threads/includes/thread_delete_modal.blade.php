@@ -21,7 +21,7 @@
 
 	  </a>
 
-	  <a id="delete_modal_yes" class="modal-action modal-close waves-effect waves-green btn-flat">
+	  <a id="btn_yes" class="modal-action modal-close waves-effect waves-green btn-flat">
 
 	  	<i class="material-icons blue-text left">check</i>
 

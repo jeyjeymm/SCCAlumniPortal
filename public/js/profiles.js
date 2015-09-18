@@ -1,202 +1,206 @@
-var btn_edit_profile = $('#btn_edit_profile');
+var profiles = (function() {
 
-var profiles_dashboard = $('#profiles_dashboard');
-var btn_about = $('#btn_profile_about');
-var btn_threads = $('#btn_profile_threads');
-var btn_work = $('#btn_profile_work');
+	var header = $('#header');
+	var profiles = $('#profiles');
+	var fab_search = $('#fab_search');
 
-var fab_search_profile = $('#fab_search_profile');
+	var id = profiles.find('#profile_id');
 
-var nav_items_container = $('#nav_items_container');
-var nav_search_container = $('#nav_search_container');
-var nav_search = $('#nav_search');
-
-var profiles_progress_bar = $('#profiles_progress_bar');
-var profile_search_result = $('#profile_search_result');
-var profile_search_result_header = $('#profile_search_result_header');
-var profile_search_result_list = $('#profile_search_result_list');
-
-var profiles_content = $('#profiles_content');
+	var btn_edit = profiles.find('#btn_edit');
+	var dashboard = profiles.find('#dashboard');
+	var btn_about = profiles.find('#btn_about');
+	var btn_threads = profiles.find('#btn_threads');
+	var btn_work = profiles.find('#btn_work');
 
 
+	var mainContainer = header.find('#main_container');
+	var searchContainer = header.find('#search_container');
+	var input_search = header.find('#input_search');
 
+	var progressBar = profiles.find('#progress_bar');
+	var search_result = profiles.find('#search_result');
+	var search_resultHeader = profiles.find('#search_result_header');
+	var search_resultList = profiles.find('#search_result_list');
 
-
-btn_about.on('click',function(){
-
-	var id = profiles_dashboard.find('input').val();
-
-	var getView = $.get('/get/view/profile/'+id+'/profiles.info');
-
-	getView.done(function(view){
-
-		profiles_content.html(view);
-
-	});
-});
+	var content = profiles.find('#content');
 
 
 
 
 
-btn_threads.on('click',function(){
+	btn_about.on('click',function(){
 
-	var id = profiles_dashboard.find('#profile_id').val();
+		var getView = $.get('/get/view/profile/'+ id.val() +'/profiles.info');
 
-	var getView = $.get('/get/view/threads/'+id+'/profiles.threads');
+		getView.done(function(view){
 
-	getView.done(function(view){
+			content.html(view);
 
-		profiles_content.html(view);
-
+		});
 	});
 
-});
 
 
 
 
-/*
-btn_edit_profile.on('click',function(){
+	btn_threads.on('click',function(){
 
-	var getView = $.get('/get/view/profile/profiles.includes.forms.edit_form/edit');
+		var getView = $.get('/get/view/threads/'+ id.val() +'/profiles.threads');
 
-	getView.done(function(view){
+		getView.done(function(view){
 
-		profiles_content.html(view);
+			content.html(view);
+
+		});
 
 	});
 
-});*/
+
+
+
+	/*
+	btn_edit.on('click',function(){
+
+		var getView = $.get('/get/view/profile/profiles.includes.forms.edit_form/edit');
+
+		getView.done(function(view){
+
+			content.html(view);
+
+		});
+
+	});*/
 
 
 
 
-btn_work.on('click',function(){
+	btn_work.on('click',function(){
 
-	var id = profiles_dashboard.find('#profile_id').val();
+		var getView = $.get('/get/view/employment_data/'+ id.val() +'/profiles.work');
 
-	var getView = $.get('/get/view/employment_data/'+id+'/profiles.work');
+		getView.done(function(view){
 
-	getView.done(function(view){
+			content.html(view);
 
-		profiles_content.html(view);
+		});
 
 	});
 
-});
 
 
 
 
+	fab_search.on('click',function(){
 
-fab_search_profile.on('click',function(){
+		mainContainer.toggle();
+		searchContainer.toggle();
 
-	nav_items_container.toggle();
-	nav_search_container.toggle();
+		if(input_search.is(':visible')){
 
-	if(nav_search.is(':visible')){
-		nav_search.focus();
-	}
+			input_search.focus();
 
-});
+		}
 
-
+	});
 
 
-nav_search.on('keyup',function(){
 
-	var input = $(this).val();
 
-	if (input !== '') {
+	input_search.on('keyup',function(){
 
-		timer = setTimeout(function(){
+		var input = $(this).val();
 
-				profiles_progress_bar.fadeIn();
+		if (input !== '') {
 
-				var get = $.get('/profiles/search/' + input);
+			timer = setTimeout(function(){
 
-				get.done(function(profiles){
+					progressBar.fadeIn();
 
-					if (profiles.length !== 0) {
+					var get = $.get('/profiles/search/' + input);
 
-						var result = '';
+					get.done(function(profiles){
 
-						for (var i = 0; i < profiles.length; i++) {
+						if (profiles.length !== 0) {
 
-							var image_name = profiles[i].image_name !== '' ? profiles[i].image_name : 'default' ;
+							var result = '';
 
-							result += 
-								"<a href='" + window.location.origin + "/profiles/" + profiles[i].id + "' class='collection-item avatar'>" +
+							for (var i = 0; i < profiles.length; i++) {
 
-									"<img src='" + window.location.origin + "/get/photo/profiles."+ profiles[i].id + ".profile_picture/" + image_name + "' alt='Avatar' class='circle'/>" +
+								var image_name = profiles[i].image_name !== '' ? profiles[i].image_name : 'default' ;
 
-									"<span class='title'>" + profiles[i].name + " (" + profiles[i].nickname + ")" + "</span>" +
+								result += 
+									"<a href='" + window.location.origin + "/profiles/" + profiles[i].id + "' class='collection-item avatar'>" +
 
-								"</a>";
+										"<img src='" + window.location.origin + "/get/photo/profiles."+ profiles[i].id + ".profile_picture/" + image_name + "' alt='Avatar' class='circle'/>" +
+
+										"<span class='title'>" + profiles[i].name + " (" + profiles[i].nickname + ")" + "</span>" +
+
+									"</a>";
+
+							}
+
+							if(!search_resultList.is(':empty')){
+
+								search_resultList.empty();
+
+							}
+
+							if (!search_resultHeader.is(':empty')) {
+
+								search_resultHeader.empty().append('Search results for: ' + input);
+
+							}
+
+							search_resultList.append(result);
+
+							search_result.show();
+
+						} else {
+
+							if (!search_resultList.is(':empty')) {
+
+								search_resultList.empty();
+
+							}
+
+							if (!search_resultHeader.is(':empty')) {
+
+								search_resultHeader.empty().append('Search results for: ' + input);
+
+							}
+
+
+							search_resultList.append("<li class='collection-item'> No results found. </li>");
+
+							search_result.show();
 
 						}
 
-						if(!profile_search_result_list.is(':empty')){
+						progressBar.hide();
 
-							profile_search_result_list.empty();
+					});
 
-						}
+			} , .3 * 1000 );
 
-						if (!profile_search_result_header.is(':empty')) {
+		}
 
-							profile_search_result_header.empty().append('Search results for: ' + input);
+		
 
-						}
+	}).on('keydown',function(){
 
-						profile_search_result_list.append(result);
+		clearTimeout(timer);
 
-						profile_search_result.show();
+	}).on('focusout',function(){
 
-					} else {
+		if ($(this).val() === '') {
 
-						if (!profile_search_result_list.is(':empty')) {
+			mainContainer.fadeIn();
+			searchContainer.fadeOut();
 
-							profile_search_result_list.empty();
+			search_result.fadeOut();
 
-						}
+		}
+		
+	});
 
-						if (!profile_search_result_header.is(':empty')) {
-
-							profile_search_result_header.empty().append('Search results for: ' + input);
-
-						}
-
-
-						profile_search_result_list.append("<li class='collection-item'> No results found. </li>");
-
-						profile_search_result.show();
-
-					}
-
-					profiles_progress_bar.hide();
-
-				});
-
-		} , .3 * 1000 );
-
-	}
-
-	
-
-}).on('keydown',function(){
-
-	clearTimeout(timer);
-
-}).on('focusout',function(){
-
-	if ($(this).val() === '') {
-
-		nav_search_container.fadeOut();
-		nav_items_container.fadeIn();
-
-		profile_search_result.fadeOut();
-
-	}
-	
-});
+})();

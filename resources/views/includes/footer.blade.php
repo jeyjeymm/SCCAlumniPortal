@@ -1,4 +1,4 @@
-<footer class="page-footer red darken-4">
+<footer id="footer" class="page-footer red darken-4">
 
 <div class="container">
 
@@ -56,7 +56,7 @@
        
         Copyright © <?php echo date('Y') ?> - San Carlos College - Formerly PIEAS
         
-        <a href="!#" class="grey-text text-lighten-4 right" id="btn_back_to_top">Back to top</a>
+        <a href="#!" class="grey-text text-lighten-4 right" id="back_to_top">Back to top</a>
     
     </div>
 

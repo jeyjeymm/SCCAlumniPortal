@@ -1,6 +1,6 @@
-<div id="form_user_management_container" class="marg_20 white z-depth-1 col s12 m6 l6 offset-m3 offset-l3" style="display: none">
+<div id="form_userManagementContainer" class="marg_20 white z-depth-1 col s12 m6 l6 offset-m3 offset-l3" style="display: none">
 
-    <form id="form_user_management" class="pad_20" action=" {{ url('users') }} " method="post">
+    <form id="form_userManagement" class="pad_20" action=" {{ url('users') }} " method="post">
 
         <input type="hidden" id="laravel_method">
 
@@ -12,13 +12,6 @@
         <a id="btn_back" href><i class="material-icons">arrow_back</i></a>
         <h5 style="display: inline-block">User Management:</h5>
 
-        <!--<div class="input-field">
-
-            <input id="id" name="id" type="text" value="{{ old('id') }}" readonly>
-
-            <label id="lbl_id" for="id">ID: </label>
-
-        </div>-->
 
         <div class="input-field">
 
@@ -38,6 +31,7 @@
         </div>
 
 
+
         <div class="input-field">
 
             <input id="username" name="username" type="text" value="{{ old('username') }}" required>
@@ -45,24 +39,6 @@
             <label id="lbl_username" for="username">Username: </label>
 
         </div>
-
-
-        <!-- <div class="input-field">
-
-            <input name="password" type="password" required>
-
-            <label for="password">Password: </label>
-
-        </div>
-
-        
-        <div class="input-field">
-
-            <input name="password_confirmation" type="password" required>
-
-            <label for="password_confirmation">Confirm Password: </label>
-
-        </div> -->
 
         <div class="row">
 
@@ -88,27 +64,6 @@
 
             </div>
 
-            <!--<div class="col s12 m4 l4">
-
-                <label>Course: </label>
-                <select id="course_id" name="course_id" class="browser-default">
-
-                    <option disabled {{ old("course_id") === null ? "selected" : "" }} >Select course</option>
-                    <option value="1" {{ old("course_id") === '1' ? "selected" : "" }}>N/A</option>
-                    <option value="2" {{ old("course_id") === '2' ? "selected" : "" }}>BSIT</option>
-                    <option value="3" {{ old("course_id") === '3' ? "selected" : "" }}>CICS</option>
-                    <option value="4" {{ old("course_id") === '4' ? "selected" : "" }}>IS</option>
-                    <option value="5" {{ old("course_id") === '5' ? "selected" : "" }}>ACT</option>
-                    <option value="6" {{ old("course_id") === '6' ? "selected" : "" }}>BSA</option>
-                    <option value="7" {{ old("course_id") === '7' ? "selected" : "" }}>BSBA</option>
-                    <option value="8" {{ old("course_id") === '8' ? "selected" : "" }}>JSC</option>
-                    <option value="9" {{ old("course_id") === '9' ? "selected" : "" }}>BEED-Gen ED</option>
-                    <option value="10" {{ old("course_id") === '10' ? "selected" : "" }}>BEED</option>
-                    <option value="11" {{ old("course_id") === '11' ? "selected" : "" }}>BSED</option>
-
-                </select>
-
-            </div>-->
 
             <div class="input-field col s12 m6 l6 role_container">
 
@@ -130,27 +85,6 @@
 
         </div>
 
-        <!--<div class="row">
-
-            <div class="col s12 m12 l12">
-
-                <label>Batch</label>
-                <select name="batch" class="browser-default">
-
-                    <option disabled {{ old('batch') === null ? "selected" : "" }} >Select batch</option>
-
-                    @for ($year = 2000; $year <= date('Y'); $year++)
-
-                        <option value="{{ $year }}" {{ old('batch') === "$year" ? "selected" : "" }} >{{ $year }}</option>
-
-                    @endfor
-
-                </select>
-
-            </div>
-
-        </div>-->
-
         <div class="input-field">
 
             @if (Auth::user()->role->name === 'admin')
@@ -161,11 +95,13 @@
 
             @endif
 
-                <a id ="btn_goto_profile" class="btn-flat waves-effect waves-dark blue-text">Go to profile</a>
+                <a id ="btn_goToProfile" class="btn-flat waves-effect waves-dark blue-text">Go to profile</a>
 
         </div>
 
+
         @include('errors.form_errors')
+
 
     </form>
 

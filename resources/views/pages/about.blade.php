@@ -17,7 +17,7 @@
 
 	<div class="row center">
 		
-		<h4>ALUMNI AFFAIRS OFFICE</h4>
+		<h4 class="marg_20">ALUMNI AFFAIRS OFFICE</h4>
 		<br />
 
 
@@ -40,27 +40,24 @@
 
 	<div class="row center">
 		
-		<h4> BOARD OF DIRECTORS </h4>
+		<h4 class="marg_20"> BOARD OF DIRECTORS </h4>
 		<br />
 
 
 		<!-- Row 1 -->
+
 		<div class="col s12 m12 l12">
-
-			<div class="col s12 m4 l4 offset-m4 offset-l4">
-			
-				<div class="card center pad_20">
-					
-					<h5> Josefina J. Caranto </h5>
-					<p> President </p>
-
-				</div>
+		
+			<div class="card center pad_20">
+				
+				<h5> Josefina J. Caranto </h5>
+				<p> President </p>
 
 			</div>
 
 		</div>
 
-		<div class="col s6 m4 l4">
+		<div class="col s12 m4 l4">
 			
 			<div class="card center pad_20">
 				
@@ -71,7 +68,7 @@
 
 		</div>
 
-		<div class="col s6 m4 l4">
+		<div class="col s12 m4 l4">
 			
 			<div class="card center pad_20">
 				
@@ -82,7 +79,7 @@
 
 		</div>
 
-		<div class="col s6 m4 l4">
+		<div class="col s12 m4 l4">
 			
 			<div class="card center pad_20">
 				
@@ -206,7 +203,7 @@
 
 		</div>
 
-		<div class="col s6 m4 l4">
+		<div class="col s12 m4 l4">
 			
 			<div class="card center pad_20">
 				
