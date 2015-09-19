@@ -6,8 +6,9 @@
 	String $action
 
 -->
-
-<div class="pad_20 white">
+@extends('master')
+@section('content')
+<div class="white marg_20 pad_20">
 
     <form action=" {{ url('profiles/' . $profile->id) }} " method="post" enctype="multipart/form-data">
 
@@ -26,3 +27,4 @@
 	</form>
 
 </div>
+@stop

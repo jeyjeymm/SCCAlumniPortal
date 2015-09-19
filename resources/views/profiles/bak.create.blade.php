@@ -9,13 +9,13 @@
 @extends('master')
 @section('content')
 
-	<div class="marg_20 white z-depth-1 col s12 m12 l12">
+	<div class="white marg_20 pad_20">
+
+		<h5>create your profile:</h5>
 	
-	    <form class="marg_20" action="{{ url('profiles') }}" method="post" enctype="multipart/form-data">
+	    <form action="{{ url('profiles') }}" method="post" enctype="multipart/form-data">
 	
 	    	{!! csrf_field() !!}
-	
-	       	<h5>create your profile:</h5>
 	
 			@include('profiles.includes.forms.profile_form')
 

@@ -45,7 +45,7 @@
 
 		
 
-			@include('survey.includes.survey_list')
+			@include('survey.includes.survey_tables')
 
 		
 

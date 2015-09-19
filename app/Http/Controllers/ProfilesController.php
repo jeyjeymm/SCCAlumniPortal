@@ -38,29 +38,15 @@ class ProfilesController extends Controller
 
         $action = 'info';
 
-        if($profile === null){
+        /*if($profile === null){
 
             $action = 'create';
 
             return view('profiles.create',compact('action'));
 
-        }
+        }*/
 
         return view('profiles.index',compact('profile','action'));
-
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-
-        $action = 'create';
-
-        return view('profiles.create',compact('action'));
 
     }
 
@@ -130,10 +116,8 @@ class ProfilesController extends Controller
     public function edit($id)
     {
         $profile = Auth::user()->profile;
-        
-        $action = 'edit';
 
-        return view('profiles.index',compact('profile','action'));
+        return view('profiles.edit',compact('profile'));
 
     }
 

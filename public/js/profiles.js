@@ -6,7 +6,7 @@ var profiles = (function() {
 
 	var id = profiles.find('#profile_id');
 
-	var btn_edit = profiles.find('#btn_edit');
+	//var btn_edit = profiles.find('#btn_edit');
 	var dashboard = profiles.find('#dashboard');
 	var btn_about = profiles.find('#btn_about');
 	var btn_threads = profiles.find('#btn_threads');
@@ -18,9 +18,9 @@ var profiles = (function() {
 	var input_search = header.find('#input_search');
 
 	var progressBar = profiles.find('#progress_bar');
-	var search_result = profiles.find('#search_result');
-	var search_resultHeader = profiles.find('#search_result_header');
-	var search_resultList = profiles.find('#search_result_list');
+	var search_results = profiles.find('#search_results');
+	var search_resultsHeader = profiles.find('#search_results_header');
+	var search_resultsList = profiles.find('#search_results_list');
 
 	var content = profiles.find('#content');
 
@@ -30,7 +30,7 @@ var profiles = (function() {
 
 	btn_about.on('click',function(){
 
-		var getView = $.get('/get/view/profile/'+ id.val() +'/profiles.info');
+		var getView = $.get('/get/view/profile/'+ id.val() +'/profiles.includes.info');
 
 		getView.done(function(view){
 
@@ -45,7 +45,7 @@ var profiles = (function() {
 
 	btn_threads.on('click',function(){
 
-		var getView = $.get('/get/view/threads/'+ id.val() +'/profiles.threads');
+		var getView = $.get('/get/view/threads/'+ id.val() +'/profiles.includes.threads');
 
 		getView.done(function(view){
 
@@ -58,10 +58,10 @@ var profiles = (function() {
 
 
 
-	/*
-	btn_edit.on('click',function(){
+	
+	/*btn_edit.on('click',function(){
 
-		var getView = $.get('/get/view/profile/profiles.includes.forms.edit_form/edit');
+		var getView = $.get('/get/view/profile/'+ id.val() +'/profiles.edit');
 
 		getView.done(function(view){
 
@@ -76,7 +76,7 @@ var profiles = (function() {
 
 	btn_work.on('click',function(){
 
-		var getView = $.get('/get/view/employment_data/'+ id.val() +'/profiles.work');
+		var getView = $.get('/get/view/employment_data/'+ id.val() +'/profiles.includes.work');
 
 		getView.done(function(view){
 
@@ -139,40 +139,40 @@ var profiles = (function() {
 
 							}
 
-							if(!search_resultList.is(':empty')){
+							if(!search_resultsList.is(':empty')){
 
-								search_resultList.empty();
-
-							}
-
-							if (!search_resultHeader.is(':empty')) {
-
-								search_resultHeader.empty().append('Search results for: ' + input);
+								search_resultsList.empty();
 
 							}
 
-							search_resultList.append(result);
+							if (!search_resultsHeader.is(':empty')) {
 
-							search_result.show();
+								search_resultsHeader.empty().append('Search results for: ' + input);
+
+							}
+
+							search_resultsList.append(result);
+
+							search_results.show();
 
 						} else {
 
-							if (!search_resultList.is(':empty')) {
+							if (!search_resultsList.is(':empty')) {
 
-								search_resultList.empty();
-
-							}
-
-							if (!search_resultHeader.is(':empty')) {
-
-								search_resultHeader.empty().append('Search results for: ' + input);
+								search_resultsList.empty();
 
 							}
 
+							if (!search_resultsHeader.is(':empty')) {
 
-							search_resultList.append("<li class='collection-item'> No results found. </li>");
+								search_resultsHeader.empty().append('Search results for: ' + input);
 
-							search_result.show();
+							}
+
+
+							search_resultsList.append("<li class='collection-item'> No results found. </li>");
+
+							search_results.show();
 
 						}
 
@@ -197,7 +197,7 @@ var profiles = (function() {
 			mainContainer.fadeIn();
 			searchContainer.hide();
 
-			search_result.hide();
+			search_results.hide();
 
 		}
 		

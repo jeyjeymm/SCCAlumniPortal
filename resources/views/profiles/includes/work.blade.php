@@ -57,7 +57,15 @@
 
 	    	<p class="col s6 m6 l6"><b>Reasons not yet employed:</b></p>
 
-		    <p class="col s6 m6 l6" name="reasons_not_yet_employed"> {{ $employment_data->reasons_not_yet_employed }} </p>  
+	    	<div class="col s6 m6 l6">
+
+		    	@foreach (explode(',',$employment_data->reasons_not_yet_employed) as $reason)
+
+			    	<p name="reasons_not_yet_employed"> {{ $reason }} </p>  
+
+		   		@endforeach
+
+	   		</div>
 
 	    @endif
 

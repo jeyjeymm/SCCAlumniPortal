@@ -9,33 +9,33 @@
 
 <?php
 
-	if ($action === 'create' || $action === 'survey') {
-
-        $nickname = old('nickname');
-        $permanent_address = old('permanent_address');
-        $present_address = old('present_address');
-        $contact_number = old('contact_number');
-        $birthday = old('birthday');
-		$civil_status = old('civil_status');
-		$gender = old('gender');
-		$region_of_origin = old('region_of_origin');
-		$location_of_residence = old('location_of_residence');
-        $province = old('province');
-        $about_me = old('about_me');
-
-	}else{
+	if ($profile->first()) {
 
         $nickname = $profile->nickname;
         $permanent_address = $profile->permanent_address;
         $present_address = $profile->present_address;
         $contact_number = $profile->contact_number;
         $birthday = $profile->birthday;
-		$civil_status = $profile->civil_status;
-		$gender = $profile->gender;
-		$region_of_origin = $profile->region_of_origin;
-		$location_of_residence = $profile->location_of_residence;
+        $civil_status = $profile->civil_status;
+        $gender = $profile->gender;
+        $region_of_origin = $profile->region_of_origin;
+        $location_of_residence = $profile->location_of_residence;
         $province = $profile->province;
         $about_me = $profile->about_me;
+
+	}else{
+
+        $nickname = old('nickname');
+        $permanent_address = old('permanent_address');
+        $present_address = old('present_address');
+        $contact_number = old('contact_number');
+        $birthday = old('birthday');
+        $civil_status = old('civil_status');
+        $gender = old('gender');
+        $region_of_origin = old('region_of_origin');
+        $location_of_residence = old('location_of_residence');
+        $province = old('province');
+        $about_me = old('about_me');
 
 	}
 
@@ -49,32 +49,28 @@
 
 </div>
 
-@if ($action !== 'survey')
+<div class="file-field input-field">
 
-    <div class="file-field input-field">
+	<div class="btn waves-effect waves-light red darken-1">
 
-    	<div class="btn waves-effect waves-light red darken-1">
+		<span>
 
-    		<span>
+			<i class="material-icons right">person</i>
+			Profile Picture
 
-    			<i class="material-icons right">person</i>
-    			Profile Picture
+		</span>
+		
+		<input name="image_file" type="file">
 
-    		</span>
-    		
-    		<input name="image_file" type="file">
+	</div>
 
-    	</div>
+	<div class="file-path-wrapper">
+		
+		<input type="text" name="image_name" class="file-path" readonly/>
 
-    	<div class="file-path-wrapper">
-    		
-    		<input type="text" name="image_name" class="file-path" readonly/>
+	</div>
 
-    	</div>
-
-    </div>
-
-@endif
+</div>
 
 <div class="input-field">
 
@@ -216,14 +212,10 @@
 
 </div>
 
-@if ($action !== 'survey')
+<div class="input-field col s12 m12 l12">
 
-    <div class="input-field col s12 m12 l12">
+    <textarea name="about_me" class="materialize-textarea">{{ $about_me }}</textarea>
 
-        <textarea name="about_me" class="materialize-textarea">{{ $about_me }}</textarea>
+    <label>Say something about yourself like motto, principle, etc. </label>
 
-        <label>Say something about yourself like motto, principle, etc. </label>
-
-    </div>
-
-@endif
+</div>

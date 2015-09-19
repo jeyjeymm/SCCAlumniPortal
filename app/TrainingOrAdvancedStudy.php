@@ -15,6 +15,8 @@ class TrainingOrAdvancedStudy extends Model
 
 	];
 
+	protected $table = 'trainings_or_advanced_studies';
+
 
 
 

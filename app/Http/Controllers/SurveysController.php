@@ -34,7 +34,9 @@ class SurveysController extends Controller
      */
     public function index()
     {
+
         return view('survey.index');
+        
     }
 
     /**
@@ -45,31 +47,45 @@ class SurveysController extends Controller
      */
     public function show($id)
     {
-        if ($id == 1) {
 
-            return view('survey.index');
+        switch($id) {
 
-        } else if ($id == 2) {
+            case 1:
 
-            return view('survey.educational_background.educational_attainment');
-            
-        } else if ($id == 3) {
+                return view('survey.index');
 
-            return view('survey.educational_background.professional_exams_passed');
-            
-        } else if ($id == 4) {
+            break;
 
-            return view('survey.training_or_advanced_studies.index');
-            
-        } else if ($id == 5) {
+            case 2:
 
-            return view('survey.employment_data.index');
+                return view('survey.educational_background.educational_attainment');
+                
+            break;
+
+            case 3:
+
+                return view('survey.educational_background.professional_exams_passed');
+                
+            break;
+
+            case 4:
+
+                return view('survey.training_or_advanced_studies.index');
+                
+            break;
+
+            case 5:
+
+                return view('survey.employment_data.index');
+
+            break;
 
         }
+
     }
 
 
-    public function save_profile(SurveyUserInfoRequest $request){
+    public function storeProfile(SurveyUserInfoRequest $request){
 
         if (!Auth::user()->profile()->first()) {
     
@@ -82,7 +98,7 @@ class SurveysController extends Controller
     }
 
 
-    public function store_educational_attainments(Request $request, $num){
+    public function storeEducationalAttainments(Request $request, $num){
 
         $request_data = $request->all();
 
@@ -113,7 +129,7 @@ class SurveysController extends Controller
     }    
 
 
-    public function store_professional_exams_passed(Request $request, $num){
+    public function storeProfessionalExamsPassed(Request $request, $num){
     
         $request_data = $request->all();
 
@@ -143,7 +159,7 @@ class SurveysController extends Controller
     }
 
 
-    public function store_trainings_or_studies(Request $request, $num){
+    public function storeTrainingsOrStudies(Request $request, $num){
     
         $request_data = $request->all();
 
@@ -163,7 +179,7 @@ class SurveysController extends Controller
 
             $training_or_advanced_study->department()->associate(Auth::user()->department);
 
-            Auth::user()->training_or_advanced_studies()->save($training_or_advanced_study);
+            Auth::user()->trainings_or_advanced_studies()->save($training_or_advanced_study);
             
     
         }
@@ -173,7 +189,7 @@ class SurveysController extends Controller
     }
 
 
-    public function store_employment_data(Request $request, $is_employed){
+    public function storeEmploymentData(Request $request, $is_employed){
     
         if ($is_employed === 'no') {
 
@@ -231,16 +247,16 @@ class SurveysController extends Controller
 
 
 
-    public function edit_employment_data(){
+    public function editEmploymentData(){
     
         $employment_data = Auth::user()->employment_data;
 
-        return view('profiles.edit_employment_data',compact('employment_data'));
+        return view('survey.employment_data.edit',compact('employment_data'));
             
     }
 
 
-    public function update_employment_data(Request $request, $id){
+    public function updateEmploymentData(Request $request, $id){
     
 
         $request_data = $request->all();
@@ -272,7 +288,7 @@ class SurveysController extends Controller
 
 
 
-    public function list_survey(){
+    public function listSurvey(){
     
         $educational_attainments = EducationalAttainment::paginate(20);
         $professional_exams_passed = ProfessionalExamPassed::paginate(20);
@@ -284,7 +300,7 @@ class SurveysController extends Controller
     }
 
 
-    public function filter($department_id){
+    public function filterByDepartment($department_id){
 
         if ($department_id === '0') {
 

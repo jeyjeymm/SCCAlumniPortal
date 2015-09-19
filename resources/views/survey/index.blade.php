@@ -10,7 +10,7 @@
 
 			<h5>Personal Information</h5>
 
-			@include('profiles.includes.forms.profile_form',['action' => 'survey'])
+			@include('profiles.includes.forms.personal_info_form')
 
 			<button type="submit" class="btn waves-effect waved-light red darken-2">
 

@@ -126,7 +126,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             
     }
 
-    public function training_or_advanced_studies(){
+    public function trainings_or_advanced_studies(){
     
         return $this->hasMany('App\TrainingOrAdvancedStudy');
             
