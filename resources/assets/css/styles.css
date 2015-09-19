@@ -1,0 +1,54 @@
+html, body, div, span, h1, h2, h3, h4, h5, h6, p,
+strong, b, u, i, center, ol, ul, li,
+form, label, article, footer, header, hgroup, 
+menu, nav, output, section, summary
+{
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+   font-family: GoogleRobotoLight; 
+   src: url('../bower_components/materialize/font/roboto/Roboto-Light.ttf');
+} 
+
+@font-face {
+   font-family: GoogleRobotoThin; 
+   src: url('../bower_components/materialize/font/roboto/Roboto-Thin.ttf');
+} 
+
+html {
+    font-family: GoogleRobotoLight;
+    background-color: #e9e9e9;
+}
+
+pre {
+    display: block;
+    font-family: GoogleRobotoLight;
+    white-space: pre;
+    margin: 1em 0;
+}
+
+.roboto-thin{
+    font-family: GoogleRobotoThin;
+}
+
+.roboto-light{
+    font-family: GoogleRobotoLight;
+}
+
+.margin-sides{
+  margin: 0px 20px;
+}
+
+.pad-sides{
+  padding: 0px 20px;
+}
+
+.pad_20{
+    padding: 20px;
+  }
+
+.marg_20{
+    margin: 20px;
+}

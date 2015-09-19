@@ -34,26 +34,7 @@ class SurveysController extends Controller
      */
     public function index()
     {
-        //if(Auth::user()->department->name === 'High School' || Auth::user()->department->name === 'UPHS') {
-
-        //   return view('survey.highschool.index');
-
-        //} else {
-
-            return view('survey.index');
-
-        //}
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('survey.index');
     }
 
     /**
@@ -89,8 +70,12 @@ class SurveysController extends Controller
 
 
     public function save_profile(SurveyUserInfoRequest $request){
+
+        if (!Auth::user()->profile()->first()) {
     
-        Auth::user()->profile()->create($request->all());
+            Auth::user()->profile()->create($request->all());
+
+        }
 
         return redirect('survey/2');
             
@@ -158,7 +143,7 @@ class SurveysController extends Controller
     }
 
 
-    public function store_training_or_advanced_studies(Request $request, $num){
+    public function store_trainings_or_studies(Request $request, $num){
     
         $request_data = $request->all();
 

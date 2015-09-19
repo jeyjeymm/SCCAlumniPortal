@@ -1,5 +1,8 @@
 @include('includes.css')
-<div class="container">
+
+  <div id="professional_exams_passed">
+
+    <div class="container">
 
         <h4>San Carlos College Survey</h4>     
         <h5>Educational Background</h5>
@@ -12,7 +15,7 @@
 
             </div>
 
-            <form id="form_professional_exams_passed" action="{{ url('survey/professional_exams_passed/1') }}" method="post">
+            <form id="form_professionalExamsPassed" action="{{ url('survey/professional_exams_passed/1') }}" method="post">
 
                 {!! csrf_field() !!}
 
@@ -59,14 +62,14 @@
                 </div>
 
                 <!-- Add additional fields -->
-                <a id="btn_professional_exams_passed_add" class="btn-flat waves-effect waves-blue">
+                <a id="btn_add" class="btn-flat waves-effect waves-blue">
 
                     <i class="material-icons left">add</i>Add Field
 
                 </a>
 
                  <!-- Remove fields -->
-                <a id="btn_professional_exams_passed_remove" class="btn-flat waves-effect waves-dark red-text">
+                <a id="btn_remove" class="btn-flat waves-effect waves-dark red-text">
 
                     <i class="material-icons left">remove</i>Remove Field
 
@@ -91,7 +94,9 @@
 
         </a>
 
+    </div>
 
   </div>
 
 @include('includes.scripts')
+@include('includes.selected_scripts',['scripts' => ['professional_exams']])

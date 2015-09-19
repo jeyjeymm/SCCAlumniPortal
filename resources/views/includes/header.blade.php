@@ -1,130 +1,90 @@
 <header id="header">
 
-<div class="navbar-fixed">
+    <div class="navbar-fixed">
 
-    <nav class="red darken-4">
+        <nav class="red darken-4">
 
-        <div class="nav-wrapper">
+            <div class="nav-wrapper">
 
-            <!-- Navbar items -->
-            <div id="main_container">
+                <!-- Navbar items -->
+                <div id="main_container">
 
-                <a href="#" data-activates="sidenav" class="button-collapse"><i class="tiny material-icons">menu</i></a>
-                
-                 <img id="logo" height="60px" width="60px" class="brand-logo center responsive-img circle hide-on-med-and-down" src="{{ url('images/logo.png') }}" />
-                
-                <a class="brand-logo margin-sides roboto-thin white-text hide-on-small-only">San Carlos College Alumni Portal</a>                  
+                    <a href="#!" data-activates="sidenav" class="button-collapse"><i class="tiny material-icons">menu</i></a>
+                    
+                    <img id="logo" height="60px" width="60px" class="brand-logo center responsive-img circle hide-on-med-and-down" src="{{ url('images/logo.png') }}" />
+                    
+                    <a class="brand-logo margin-sides roboto-thin white-text hide-on-small-only">San Carlos College Alumni Portal</a>                  
 
-                <ul class="right hide-on-med-and-down margin-sides">
+                    <ul class="right hide-on-med-and-down margin-sides">
 
-                    <li><a href=" {{ url('articles') }} ">Home</a></li>
+                        <li><a href=" {{ url('articles') }} ">Home</a></li>
 
-                    @if (Auth::check())
+                        @if (Auth::check())
 
-                        @if (Auth::user()->role->name === 'user')
+                            @if (Auth::user()->role->name === 'user')
 
-                            <li><a href=" {{ url('profiles') }} ">Profile</a></li>
+                                <li><a href=" {{ url('profiles') }} ">Profile</a></li>
 
-                        @endif
-
-                    @endif
-
-                    <li><a href=" {{ url('threads') }} ">Forum</a></li>
-
-                    <li><a href=" {{ url('about') }} ">About</a></li>
-
-                    @if (Auth::check())
-
-                        <!-- Dropdown Trigger -->
-                        <li>
-                            <a class="dropdown-button" href="#!" data-activates="nav_dropdown">
-
-                                {{ Auth::user()->username }} <i class="material-icons right">arrow_drop_down</i>
-
-                            </a>
-
-                        </li>
-
-                    @else
-
-                        <a class="btn waves-effect white-text red darken-1" href=" {{ url('auth/login') }} ">Login</a>
-
-                    @endif
-
-                </ul>    
-
-                <a class="brand-logo roboto-thin nav-title white-text hide-on-med-only hide-on-large-only">SCC Alumni Portal</a>
-
-                <ul class="side-nav" id="sidenav">
-
-                    @if (Auth::check())
-
-                        <div class="center">
-
-                            <img class="responsive-img circle" src="{{ url('images/logo.png') }}" alt="logo" />
-
-                            <a>Hi, {{ Auth::user()->name }}!</a>
-
-                        </div>
-
-                    @endif
-
-                    <li class="divider"></li>
-
-                    <li disabled><a href=" {{ url('articles') }} ">Home</a></li>
-
-                    @if (Auth::check())
-
-                        @if (Auth::user()->role->name === 'user')
-
-                            <li><a href=" {{ url('profiles') }} ">Profile</a></li>
+                            @endif
 
                         @endif
 
-                    @endif
+                        <li><a href=" {{ url('threads') }} ">Forum</a></li>
 
-                    <li><a href=" {{ url('threads') }} ">Forum</a></li>
+                        <li><a href=" {{ url('about') }} ">About</a></li>
 
-                    <li><a href=" {{ url('about') }} ">About</a></li>
+                        @if (Auth::check())
 
-                    @if (Auth::check())
+                            <!-- Dropdown Trigger -->
+                            <li>
+                                <a class="dropdown-button" href="#!" data-activates="nav_dropdown">
 
-                        <li><a href=" {{ url('auth/logout') }} ">Logout</a></li>
+                                    {{ Auth::user()->username }} <i class="material-icons right">arrow_drop_down</i>
 
-                    @else
+                                </a>
 
-                        <li><a href=" {{ url('auth/login') }} ">Login</a></li>
+                            </li>
 
-                    @endif
+                            <!-- Dropdown Structure -->
+                            <ul id="nav_dropdown" class="dropdown-content">
 
-                </ul>
+                                <li><a href=" {{ url('password/email') }} ">Password</a></li>
+                                <li class="divider"></li>
+                                <li><a href=" {{ url('auth/logout') }} ">Logout</a></li>
 
-            </div>
+                            </ul>
 
-            <!-- Search navbar -->
-            <div id="search_container" style="display: none">
+                        @else
 
-                <div class="input-field">
+                            <a class="btn waves-effect white-text red darken-1" href=" {{ url('auth/login') }} ">Login</a>
 
-                    <input id="input_search" type="search" required>
+                        @endif
 
-                    <label for="input_search"><i class="material-icons">search</i></label>
+                    </ul>    
+
+                    <!-- Navigation drawer for smaller screens -->
+                    @include('includes.nav_drawer')
+
+
+                </div>
+
+                <!-- Search navbar -->
+                <div id="search_container" style="display: none">
+
+                    <div class="input-field">
+
+                        <input id="input_search" type="search" required>
+
+                        <label for="input_search"><i class="material-icons">search</i></label>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
+        </nav>
 
-    </nav>
-
-</div>
-
-<!-- Dropdown Structure -->
-<ul id="nav_dropdown" class="dropdown-content">
-
-  <li><a href=" {{ url('auth/logout') }} ">Logout</a></li>
-
-</ul>
+    </div>
 
 </header>

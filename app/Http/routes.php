@@ -62,7 +62,7 @@ Route::get('survey/list','SurveysController@list_survey');
 Route::post('survey/profiles','SurveysController@save_profile');
 Route::post('survey/educational_attainments/{num}','SurveysController@store_educational_attainments');
 Route::post('survey/professional_exams_passed/{num}','SurveysController@store_professional_exams_passed');
-Route::post('survey/training_or_advanced_studies/{num}','SurveysController@store_training_or_advanced_studies');
+Route::post('survey/trainings_or_studies/{num}','SurveysController@store_trainings_or_studies');
 Route::post('survey/employment_data/{choice}','SurveysController@store_employment_data');
 Route::get('survey/list/filter/{department}','SurveysController@filter');
 Route::get('survey/{id}','SurveysController@show');

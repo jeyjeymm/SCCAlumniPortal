@@ -1,10 +1,10 @@
 @extends('master')
 @section('content')
-<div class="marg_20">
+<div class="card marg_20 pad_20">
 
     <h4>Password Reset Form</h4>
 
-    <form class="pad_20" method="POST" action="{{ url('password/email') }}">
+    <form method="POST" action="{{ url('password/email') }}">
 
         {!! csrf_field() !!}
 

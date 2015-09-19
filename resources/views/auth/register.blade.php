@@ -61,7 +61,7 @@
 
         <div class="input-field col s12 m4 l4">
 
-            <select id="register_departments" name="department_id">
+            <select id="departments" name="department_id">
 
                 <option disabled {{ old('department_id') === null ? "selected" : "" }} >Choose option</option>
 
@@ -85,7 +85,7 @@
         <div class="col s12 m4 l4">
 
             <label>Course: </label>
-            <select id="register_courses" name="course_id" class="browser-default">
+            <select id="courses" name="course_id" class="browser-default" disabled>
 
                 <option disabled {{ old("course_id") === null ? "selected" : "" }} >Select course</option>
                 <option value="1" {{ old("course_id") === 1 ? "selected" : "" }}>N/A</option>
@@ -141,6 +141,6 @@
 
 @section('page_scripts')
 
-    @include('includes.selected_scripts',['scripts' => ['register']])
+    @include('includes.selected_scripts',['scripts' => ['registration']])
 
 @stop

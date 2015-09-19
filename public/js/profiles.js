@@ -195,9 +195,9 @@ var profiles = (function() {
 		if ($(this).val() === '') {
 
 			mainContainer.fadeIn();
-			searchContainer.fadeOut();
+			searchContainer.hide();
 
-			search_result.fadeOut();
+			search_result.hide();
 
 		}
 		

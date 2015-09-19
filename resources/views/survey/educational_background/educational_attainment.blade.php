@@ -1,91 +1,95 @@
 @include('includes.css')
 
-    <div class="container">
+    <div id="educational_attainments">
 
-        <h4>San Carlos College Survey</h4>     
-        <h5>Educational Background</h5>
+        <div class="container">
 
-
-        <div class="card pad_20">    
-
-            <div class="row">
-
-                <h5 class="marg_20">Educational Attainment</h5>
-
-            </div>
-            
-            <form id="form_educational_attainments" action="{{ url('survey/educational_attainments/1') }}" method="post">
-
-                {!! csrf_field() !!}
-    
-                <div id="educational_attainment_fields">
+            <h4>San Carlos College Survey</h4>     
+            <h5>Educational Background</h5>
 
 
-                    <div class="educational_attainment_row">
+            <div class="card pad_20">    
 
-                            <div class="input-field">
+                <div class="row">
 
-                                <input name="degree_1" type="text" required/>
+                    <h5 class="marg_20">Educational Attainment</h5>
 
-                                <label class="truncate" for="1">Degree(s) and/or Specialization</label>
+                </div>
+                
+                <form id="form_educationalAttainments" action="{{ url('survey/educational_attainments/1') }}" method="post">
 
-                            </div>
+                    {!! csrf_field() !!}
+        
+                    <div id="educational_attainment_fields">
 
-                            <div class="input-field">
+                        <div class="educational_attainment_row">
 
-                                <input id="2" name="college_or_university_1" type="text" required/>
+                                <div class="input-field">
 
-                                <label class="truncate" for="2">College or University</label>
+                                    <input name="degree_1" type="text" required/>
 
-                            </div>
+                                    <label class="truncate" for="1">Degree(s) and/or Specialization</label>
 
-                            <div class="input-field">
+                                </div>
 
-                                <input id="3" name="year_graduated_1" type="text" required/>
+                                <div class="input-field">
 
-                                <label class="truncate" for="3">Year Graduated</label>
+                                    <input id="2" name="college_or_university_1" type="text" required/>
 
-                            </div>
+                                    <label class="truncate" for="2">College or University</label>
 
-                            <div class="input-field">
+                                </div>
 
-                                <input id="4" name="honors_or_awards_1" type="text"/>
+                                <div class="input-field">
 
-                                <label class="truncate" for="4">Honors or Awards Received</label>
+                                    <input id="3" name="year_graduated_1" type="text" required/>
 
-                            </div>
+                                    <label class="truncate" for="3">Year Graduated</label>
+
+                                </div>
+
+                                <div class="input-field">
+
+                                    <input id="4" name="honors_or_awards_1" type="text"/>
+
+                                    <label class="truncate" for="4">Honors or Awards Received</label>
+
+                                </div>
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <!-- Add additional fields -->
+                    <a id="btn_add" class="btn-flat waves-effect waves-blue">
 
-                <!-- Add additional fields -->
-                <a id="btn_educational_attainment_add" class="btn-flat waves-effect waves-blue">
+                        <i class="material-icons left">add</i>Add Field
 
-                    <i class="material-icons left">add</i>Add Field
+                    </a>
 
-                </a>
+                    <!-- Remove fields -->
+                    <a id="btn_remove" class="btn-flat waves-effect waves-dark red-text">
 
-                <!-- Remove fields -->
-                <a id="btn_educational_attainment_remove" class="btn-flat waves-effect waves-dark red-text">
+                        <i class="material-icons left">remove</i>Remove Field
 
-                    <i class="material-icons left">remove</i>Remove Field
+                    </a>
 
-                </a>
-
-                <!-- Submit form -->
-                <button type="submit" class="btn red darken-4 waves-effect waves-light right">
-            
-                    <i class="material-icons right">arrow_forward</i>
+                    <!-- Submit form -->
+                    <button type="submit" class="btn red darken-4 waves-effect waves-light right">
+                
+                        <i class="material-icons right">arrow_forward</i>
+                       
+                        Next
                    
-                    Next
-               
-                </button>
+                    </button>
 
-            </form>
+                </form>
 
-        </div>   
+            </div>   
+
+        </div>
 
     </div>
 
 @include('includes.scripts')
+@include('includes.selected_scripts',['scripts' => ['educational_attainments']])
