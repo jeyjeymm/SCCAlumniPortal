@@ -42,44 +42,52 @@
 
         <div class="row">
 
-            <div class="input-field col s12 m6 l6">
+            <div class="input-field">
 
-                <select id="department_id" name="department_id">
+                <div class="col s12 m6 l6">
 
-                    <option disabled {{ old('department_id') === null ? "selected" : "" }} >Choose option</option>
+                    <select id="department_id" name="department_id">
 
-                    <option value="2" {{ old('department_id') === "2" ? "selected" : "" }} >CICS</option>
+                        <option disabled {{ old('department_id') === null ? "selected" : "" }} >Choose option</option>
 
-                    <option value="3" {{ old('department_id') === "3" ? "selected" : "" }} >CABA</option>
+                        <option value="2" {{ old('department_id') === "2" ? "selected" : "" }} >CICS</option>
 
-                    <option value="4" {{ old('department_id') === "4" ? "selected" : "" }} >CTE</option>
+                        <option value="3" {{ old('department_id') === "3" ? "selected" : "" }} >CABA</option>
 
-                    <option value="5" {{ old('department_id') === "5" ? "selected" : "" }} >High School</option>
+                        <option value="4" {{ old('department_id') === "4" ? "selected" : "" }} >CTE</option>
 
-                    <option value="6" {{ old('department_id') === "6" ? "selected" : "" }} >UPHS</option>
+                        <option value="5" {{ old('department_id') === "5" ? "selected" : "" }} >High School</option>
 
-                </select>
+                        <option value="6" {{ old('department_id') === "6" ? "selected" : "" }} >UPHS</option>
 
-                <label>Department: </label>
+                    </select>
+
+                    <label>Department: </label>
+
+                </div>
 
             </div>
 
 
-            <div class="input-field col s12 m6 l6 role_container">
+            <div class="input-field">
 
-                <select id="role_id" name="role_id">
+                <div class="col s12 m6 l6">
 
-                    <option disabled {{ old('role_id') === null ? "selected" : "" }} >Choose option</option>
+                    <select id="role_id" name="role_id">
 
-                    <option value="1" {{ old('role_id') === "1" ? "selected" : "" }} >Admin</option>
+                        <option disabled {{ old('role_id') === null ? "selected" : "" }} >Choose option</option>
 
-                    <option value="2" {{ old('role_id') === "2" ? "selected" : "" }} >Editor</option>
+                        <option value="1" {{ old('role_id') === "1" ? "selected" : "" }} >Admin</option>
 
-                    <!--<option value="3" {{ old('role_id') === "3" ? "selected" : "" }} >User</option>-->
+                        <option value="2" {{ old('role_id') === "2" ? "selected" : "" }} >Editor</option>
 
-                </select>
+                        <!--<option value="3" {{ old('role_id') === "3" ? "selected" : "" }} >User</option>-->
 
-                <label>Role: </label>
+                    </select>
+
+                    <label>Role: </label>
+
+                </div>
 
             </div>
 

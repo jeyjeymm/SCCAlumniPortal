@@ -13,9 +13,9 @@ use App\Profile;
 use App\User;
 
 use Auth;
-use Input;
 use Image;
 use File;
+use Mail;
 
 class ProfilesController extends Controller
 {
@@ -36,8 +36,6 @@ class ProfilesController extends Controller
 
         $profile = Auth::user()->profile;
 
-        $action = 'info';
-
         /*if($profile === null){
 
             $action = 'create';
@@ -46,7 +44,7 @@ class ProfilesController extends Controller
 
         }*/
 
-        return view('profiles.index',compact('profile','action'));
+        return view('profiles.index',compact('profile'));
 
     }
 
@@ -101,9 +99,7 @@ class ProfilesController extends Controller
         
         $profile = Profile::findOrFail($id);
 
-        $action = 'info';
-
-        return view('profiles.index',compact('profile','action'));
+        return view('profiles.index',compact('profile'));
 
     }
 
@@ -182,6 +178,25 @@ class ProfilesController extends Controller
         }
 
         return $profiles;
+            
+    }
+
+
+    public function emailAFriend($email){
+
+
+        
+        Mail::send('emails.email_a_friend', compact('email'), function ($message) use ($email) {
+
+            $message->subject('San Carlos College Alumni Portal');
+
+            $message->from(Auth::user()->email, Auth::user()->name);
+
+            $message->to($email);
+
+        });
+
+        return 'Thank you for inviting a friend! Please invite another!';
             
     }
 

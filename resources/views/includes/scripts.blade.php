@@ -14,4 +14,4 @@
 
 <script type="text/javascript" src=" {{ url('js/materialize_init.js') }} "></script>
 
-<script type="text/javascript"  src=" {{ url('js/footer.js') }} "></script>
+<script type="text/javascript" src=" {{ url('js/footer.js') }} "></script>

@@ -10,9 +10,9 @@
 
 			<h5>Personal Information</h5>
 
-			@include('profiles.includes.forms.personal_info_form')
+			@include('profiles.includes.forms.personal_info')
 
-			<button type="submit" class="btn waves-effect waved-light red darken-2">
+			<button type="submit" class="btn waves-effect waved-light red darken-2 marg_20">
 
 				<i class="material-icons right">arrow_forward</i>
 

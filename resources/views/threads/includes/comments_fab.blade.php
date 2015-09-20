@@ -5,12 +5,12 @@
 		[
 
 			'id' => 'fab_post_comment',
-			'color' => 'red darken-2',
+			'color' => 'red',
 			'tooltip' => 'Click here to post a comment.',
 			'icon' => 'create'
 
 
-		],
+		]/*,
 
 		[
 
@@ -20,7 +20,7 @@
 			'icon' => 'search'
 
 
-		]
+		]*/
 
 	];
 

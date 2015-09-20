@@ -29,6 +29,7 @@ Route::resource('slider','SliderObjectsController', ['except' => 'show']);
 
 Route::resource('profiles', 'ProfilesController', ['except' => 'create']);
 Route::get('profiles/search/{name}', 'ProfilesController@search');
+Route::get('profiles/email/{email}', 'ProfilesController@emailAFriend');
 
 Route::resource('threads', 'ThreadsController', ['except' => 'destroy']);
 Route::get('threads/{id}/destroy', 'ThreadsController@destroy');
@@ -42,10 +43,10 @@ Route::get('survey/list/filter/{department}','SurveysController@filterByDepartme
 Route::get('survey/{id}','SurveysController@show');
 
 Route::post('survey/profiles','SurveysController@storeProfile');
-Route::post('survey/educational_attainments/{num}','SurveysController@storeEducationalAttainments');
-Route::post('survey/professional_exams_passed/{num}','SurveysController@storeProfessionalEexamsPassed');
-Route::post('survey/trainings_or_studies/{num}','SurveysController@storeTrainingsOrStudies');
-Route::post('survey/employment_data/{choice}','SurveysController@storeEmploymentData');
+Route::post('survey/educational_attainments/{count}','SurveysController@storeEducationalAttainments');
+Route::post('survey/professional_exams_passed/{count}','SurveysController@storeProfessionalExamsPassed');
+Route::post('survey/trainings_or_studies/{count}','SurveysController@storeTrainingsOrStudies');
+Route::post('survey/employment_data/{status}','SurveysController@storeEmploymentData');
 
 Route::get('employment_data/{id}/edit','SurveysController@editEmploymentData');
 Route::post('employment_data/{id}/update','SurveysController@updateEmploymentData');

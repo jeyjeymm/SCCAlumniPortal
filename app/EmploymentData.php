@@ -9,12 +9,16 @@ class EmploymentData extends Model
 
 	protected $fillable = [
 		'employment_status',
+		'industry',
 		'present_occupation',
 		'name_of_company_or_org',
 		'place_of_work',
 		'work_address',
 		'salary',
+		'job_finding_how',
+		'job_finding_duration',
 		'is_curriculum_relevant',
+		'competencies_learned',
 		'reasons_not_yet_employed',
 		'reasons_not_yet_employed_others'
 

@@ -19,7 +19,7 @@
 
                 <div class="row">
 
-                    <div class="col s12 m6 l6">
+                    <div class="input-field col s12 m6 l6">
                            
                         <input name="yes_no_options" type="radio" id="btn_yes">
                         
@@ -27,7 +27,7 @@
                     
                     </div>
                     
-                    <div class="col s12 m6 l6">
+                    <div class="input-field col s12 m6 l6">
                                         
                         <input name="yes_no_options"  type="radio" id="btn_no">
                      
@@ -55,21 +55,12 @@
                         {!! csrf_field() !!}
 
 
-                        @include('survey.employment_data.includes.employment_status')
-                            	
-
-                        @include('survey.employment_data.includes.present_occupation')
-
-
-                        @include('survey.employment_data.includes.salaries')
-
-                       
-                        @include('survey.employment_data.includes.curriculum_relevance')
+                        @include('survey.employment_data.includes.forms.employment_data')
           
 
                         <!--Submit Button-->
 
-                        <button type="submit" class="btn red darken-4 waves-effect waves-light right">
+                        <button type="submit" class="btn red darken-4 waves-effect waves-light right marg_20">
                             
                             <i class="material-icons right">done</i>
                            
@@ -95,11 +86,11 @@
 
                             {!! csrf_field() !!}
 
-                            @include('survey.employment_data.includes.reasons_not_yet_employed')
+                            @include('survey.employment_data.includes.forms._reasons_not_yet_employed')
 
                             <!--Submit Button-->
 
-                            <button type="submit" class="btn red darken-4 waves-effect waves-light right">
+                            <button type="submit" class="btn red darken-4 waves-effect waves-light right marg_20">
                                 
                                 <i class="material-icons right">done</i>
                                

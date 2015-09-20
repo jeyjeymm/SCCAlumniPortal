@@ -20,7 +20,7 @@
 	
 	       	<h5>Slider Manager</h5>
 	
-	       		@include('slider.includes.slider_form')
+	       		@include('slider.includes.forms.slider')
 
 	       	<div class="row">
 	

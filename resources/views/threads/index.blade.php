@@ -40,11 +40,7 @@
 
 		    </div>
 
-		    
-
-		    @include('includes.pagination',['paginator' => $threads])
-		    	
-		    
+		    @include('includes.pagination',['paginator' => $threads])    
 
 		@else
 

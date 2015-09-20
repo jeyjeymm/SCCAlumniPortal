@@ -30,7 +30,7 @@ class AuthController extends Controller
 
     protected $username = 'username';
 
-    protected $redirectPath = 'articles';
+    protected $redirectPath = '/articles';
 
 
 

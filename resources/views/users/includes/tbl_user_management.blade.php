@@ -2,11 +2,19 @@
 
     <div id="user_management_search" class="pad_20">
 
-        <div class="input-field col s12 m10 l10">
+        <div id="input_search_container" class="input-field col s12 m10 l10">
             
             <i class="material-icons prefix">search</i>
+
             <input type="text" id="input_search" name="search"/>
+
             <label for="input_search">Search</label>
+
+        </div>
+
+        <div id="industry_container" class="input-field col s12 m10 l10" style="display: none">
+
+            @include('survey.employment_data.includes.forms._industry')
 
         </div>
 
@@ -15,9 +23,10 @@
             <select id="search_type">
 
                 <option value="name" selected>Name</option>
-                <option value="id">ID</option>
-                <option value="email">Email</option>
+                <!--<option value="id">ID</option>
+                <option value="email">Email</option>-->
                 <option value="batch">Batch</option>
+                <option value="industry">Industry</option>
 
             </select>
             <label>Search by:</label>

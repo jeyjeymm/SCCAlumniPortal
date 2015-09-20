@@ -39,7 +39,8 @@
 
                           <div class="input-field">
 
-                              <input name="date_taken_1" type="date" required/>
+                              <input name="date_taken_1" type="date" class="datepicker" required/>
+                              <label>Date Taken</label>
 
                           </div>
 

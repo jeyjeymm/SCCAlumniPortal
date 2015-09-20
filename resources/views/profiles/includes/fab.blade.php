@@ -5,7 +5,7 @@
 		[
 
 			'id' => 'fab_search',
-			'color' => 'red darken-2',
+			'color' => 'red',
 			'tooltip' => 'Click here to search for a profile.',
 			'icon' => 'search'
 

@@ -8,23 +8,25 @@
 -->
 @extends('master')
 @section('content')
-<div class="white marg_20 pad_20">
 
-    <form action=" {{ url('profiles/' . $profile->id) }} " method="post" enctype="multipart/form-data">
+	<div class="white marg_20 pad_20">
 
-    	{!! method_field('patch') !!}
+	    <form action=" {{ url('profiles/' . $profile->id) }} " method="post" enctype="multipart/form-data">
 
-    	{!! csrf_field() !!}
+	    	{!! method_field('patch') !!}
 
-       	<h5>edit your profile:</h5>
+	    	{!! csrf_field() !!}
 
-		@include('profiles.includes.forms.profile_form')
+	       	<h5>edit your profile:</h5>
 
-		<button type="submit" class="btn waves-effect waves-light red darken-1">update</button>
+			@include('profiles.includes.forms.profile')
 
-		@include('errors.form_errors')
+			<button type="submit" class="btn waves-effect waves-light red darken-1">update</button>
 
-	</form>
+			@include('errors.form_errors')
 
-</div>
+		</form>
+
+	</div>
+
 @stop

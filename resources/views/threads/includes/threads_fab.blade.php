@@ -5,7 +5,7 @@
 			[
 
 				'id' => 'fab_post_thread',
-				'color' => 'red darken-2',
+				'color' => 'red',
 				'tooltip' => 'Click here to post a thread.',
 				'icon' => 'create'
 

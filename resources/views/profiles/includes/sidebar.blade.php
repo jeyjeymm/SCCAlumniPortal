@@ -1,44 +1,42 @@
-<div class="card">
+<div id="sidebar">
 
-	<div class="grey center pad_20">
+	<div class="card center">
 
-		<img class="z-depth-2 responsive-img circle" 
-			src="{{ route('getPhoto',[
+		<div class="pad_20" style="background-image: url( {{ url('images/gradient.png') }} );background-repeat: repeat-x;">
 
-					'url' => 'profiles' . '.' . $profile->id . '.' . 'profile_picture' , 
+			<img class="z-depth-2 responsive-img circle" 
+				src="{{ route('getPhoto',[
 
-					'name' => $profile->image_name ? $profile->image_name : 'default'
+						'url' => 'profiles' . '.' . $profile->id . '.' . 'profile_picture' , 
 
-					])}}" alt="My profile picture">
+						'name' => $profile->image_name ? $profile->image_name : 'default'
 
-	</div>
+						])}}" alt="My profile picture">
 
-	<h5 class="center"> {{ $profile->user->name }} </h5>
+		</div>
 
-	<hr />
+		<h5 class="black-text"> {{ $profile->user->name }} </h5>
 
-	<div class="container-fluid center">
+		<li class="divider"></li>
 
-		@if (Auth::user()->role->name === 'user')
+			@if (Auth::user()->profile()->first())
 
-			@if ($profile->id === Auth::user()->profile->id)
+				@if ($profile->id === Auth::user()->profile->id)
 
-				<a class="btn-flat waves-effect waves-red" href="{{ url('profiles/' . $profile->id . '/edit') }}">
+					<a class="btn-flat waves-effect waves-red" href="{{ url('profiles/' . $profile->id . '/edit') }}">
 
-					Edit my profile
+						Edit my profile
 
-				</a>
+					</a>
+
+				@endif
 
 			@endif
-
-		@endif
-
-		<div>
-		
+			
 		<blockquote><i>{{ $profile->about_me }}</i></blockquote>
-		
-		</div>
-		
+			
 	</div>
+
+	@include('profiles.includes.email_a_friend')
 
 </div>

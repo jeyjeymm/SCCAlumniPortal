@@ -3,7 +3,6 @@
 	@Params
 
 	Profile $profile
-	String $action
 
 -->
 
@@ -17,47 +16,35 @@
 
 @section('content')
 
-<div id="profiles">
+	<div id="profiles">
 
-	<div id="progress_bar" class="progress" style="display: none">
+		@include('includes.progress_bar')
 
-	    <div class="indeterminate"></div>
+		@include('profiles.includes.search_results')
 
-	</div>
+		<div id="info">
 
-	@include('profiles.includes.search_results')
+			<div class="col s12 m4 l4">
 
-	<div id="info">
+				@include('profiles.includes.sidebar')
 
-		<div class="col s12 m4 l4">
+			</div>
 
-			@include('profiles.includes.sidebar')
+			<div class="col s12 m8 l8">
 
-		</div>
+				@include('profiles.includes.dashboard')
 
-		<div class="col s12 m8 l8">
-
-			@include('profiles.includes.dashboard')
-
-			<div class="row" id="content">
-			
-				@if ($action === 'edit')
-
-					@include('profiles.edit')
-
-				@elseif ($action === 'info')
+				<div class="row" id="content">
 
 					@include('profiles.includes.info')
 
-				@endif
+				</div>
 
 			</div>
 
 		</div>
 
 	</div>
-
-</div>
 
 @stop
 

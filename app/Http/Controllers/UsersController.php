@@ -87,8 +87,6 @@ class UsersController extends Controller
 
     public function search($column,$input,$department,$order){
 
-
-
         $order_array = explode('.',$order);
     
         if($input !== '*') {

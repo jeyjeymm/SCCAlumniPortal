@@ -1,12 +1,6 @@
 @extends('master')
 @section('content')
 
-<div class="marg_20 row center">
-
-	<img class="responsive-img" src=" {{ url('images/logo.png') }} " alt="logo"/>
-
-</div>
-
 <div class="white z-depth-1 col s12 m6 l6 offset-m3 offset-l3">
 
         <form class="pad_20" action=" {{ url('auth/login') }} " method="post">

@@ -15,8 +15,15 @@ var employment_data = (function() {
     var first_job_no_container = $('#first_job_no_container');*/
 
 
+    btn_yes.on('change',showEmployedForm);
+    btn_no.on('change',showUnemployedForm);
 
-    btn_yes.on('change',function() {
+
+
+
+
+
+    function showEmployedForm() {
 
         if(this.checked) {
 
@@ -28,11 +35,14 @@ var employment_data = (function() {
             yes_container.hide();
 
         }
-    });
+    }
 
 
 
-    btn_no.on('change',function() {
+
+
+
+    function showUnemployedForm() {
 
         if(this.checked) {
 
@@ -44,7 +54,7 @@ var employment_data = (function() {
             no_container.hide();
 
         }
-    });
+    }
 
 
     /*

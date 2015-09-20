@@ -2,7 +2,7 @@
 
 	@foreach($scripts as $name)
 
-	<script type="text/javascript" src="{{ url('js/'.$name.'.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/'.$name.'.js') }}"></script>
 
 	@endforeach
 

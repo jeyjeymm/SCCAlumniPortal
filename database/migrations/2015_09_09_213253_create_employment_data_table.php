@@ -17,6 +17,7 @@ class CreateEmploymentDataTable extends Migration
 
             $table->increments('id');
             $table->string('employment_status');
+            $table->string('industry');
             $table->string('present_occupation');
             $table->string('name_of_company_or_org');
             $table->string('place_of_work');
@@ -25,12 +26,13 @@ class CreateEmploymentDataTable extends Migration
             //$table->string('reasons_for_changing_job');
             //$table->string('reasons_for_changing_job_others');
             //$table->string('job_duration');
-            //$table->string('method_of_finding_job');
-            //$table->string('method_of_finding_job_others');
             //$table->string('job_finding_duration');
             //$table->string('job_finding_duration_others');
             $table->string('salary');
+            $table->string('job_finding_how');
+            $table->string('job_finding_duration');
             $table->string('is_curriculum_relevant');
+            $table->string('competencies_learned');
             $table->string('reasons_not_yet_employed');
             $table->string('reasons_not_yet_employed_others');
             $table->integer('user_id')->unsigned();

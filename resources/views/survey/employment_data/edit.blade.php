@@ -12,7 +12,7 @@
 		        {!! csrf_field() !!}
 
 
-		        @include('profiles.includes.forms.employment_data_form')
+		        @include('survey.employment_data.includes.forms.employment_data')
 
 
 		        <!--Submit Button-->
@@ -33,3 +33,4 @@
 
 </div>
 @include('includes.scripts')
+@include('includes.selected_scripts',['scripts' => ['employment_data']])

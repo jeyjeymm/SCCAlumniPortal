@@ -287,7 +287,6 @@ class SurveysController extends Controller
     }
 
 
-
     public function listSurvey(){
     
         $educational_attainments = EducationalAttainment::paginate(20);

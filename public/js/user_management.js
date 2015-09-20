@@ -17,7 +17,12 @@ var users = (function(){
 	var order_by = user_management_search.find('#order_by');
 	var order = user_management_search.find('#order');
 	var department_filter = user_management_search.find('#department_filter');
-	var input_search = user_management_search.find('#input_search');
+
+	var input_search_container = user_management_search.find('#input_search_container');
+	var input_search = input_search_container.find('#input_search');
+
+	var industry_container = user_management_search.find('#industry_container');
+	var industry = industry_container.find('[name="industry"]');
 
 	var lbl_printDepartment = tbl_userManagementContainer.find('#lbl_printDepartment');
 	var progressBar = tbl_userManagementContainer.find('#progress_bar');
@@ -134,90 +139,96 @@ var users = (function(){
 
 
 
+	search_type.on('change',function(){
+
+		var selection = $(this);
+
+		if(selection.val() === 'industry') {
+
+			industry_container.show();
+			input_search_container.hide();
+
+		} else {
+
+			industry_container.hide();
+			input_search_container.show();
+
+		}
+
+	});
+
+
+
+
+
+	industry.on('change',function(){
+
+		search_value = $(this).find(':selected').val();
+
+		searchUsers();
+
+	});
+
+
+
+
+
 	input_search.on('keyup',function(){
 
 		search_value = $(this).val();
 
-		if (search_value !== '') {
+		if (search_value) {
 
 			timer = setTimeout(function(){
 
-				userQuery(search_type.val(),
-							search_value,
-							order_by.val(),
-							order.val(),
-							department_filter.val());
+				searchUsers();
 
-			},.5 * 1000);
+			}, .5 * 1000);
 
 		} else {
 
-			userQuery(search_type.val(),
-						'*',
-						order_by.val(),
-						order.val(),
-						department_filter.val());
+			searchUsers();
 
 		}
 
-	}).on('keydown',function(){
+	}).on('keydown textinput',function(){
 
 		clearTimeout(timer);
 
 	});
 
+	order_by.on('change',searchUsers);
+	order.on('change',searchUsers);
+	department_filter.on('change',searchUsers);
+
+	btn_createAccount.on('click',showCreateAccountForm);
+
+	btn_printTable.on('click',prepareTableForPrint);
 
 
-
-
-	order_by.on('change',function(){
-
-		userQuery(search_type.val(),
-					search_value,
-					order_by.val(),
-					order.val(),
-					department_filter.val());
-
-	});
-
-
-
-
-
-	order.on('change',function(){
-
-		userQuery(search_type.val(),
-					search_value,
-					order_by.val(),
-					order.val(),
-					department_filter.val());
-
-	});
+	
 
 
 
 
 
-	department_filter.on('change',function(){
+	function showCreateAccountForm(){
 
-		userQuery(search_type.val(),
-					search_value,
-					order_by.val(),
-					order.val(),
-					department_filter.val());
-
-	});
+		setUserManagementForm(null, 'create');
+		form_userManagementContainer.toggle();
+		tbl_userManagementContainer.toggle();
+	    	
+	}
 
 
 
 
 
-	btn_printTable.on('click',function(e){
-
-		e.preventDefault();
+	function prepareTableForPrint(e){
+	
+	    typeof e !== 'undefined' ? e.preventDefault() : null ;
 
 		user_management_search.hide();
-		
 
 		nav.hide();
 		footer.hide();
@@ -235,20 +246,8 @@ var users = (function(){
 		footer.show();
 		btn_createAccount.show();
 		btn_printTable.show();
-
-	});
-
-
-
-
-
-	btn_createAccount.on('click',function(){
-
-		setUserManagementForm(null, 'create');
-		form_userManagementContainer.toggle();
-		tbl_userManagementContainer.toggle();
-
-	});
+	    	
+	}
 
 
 
@@ -330,13 +329,13 @@ var users = (function(){
 
 
 
-	function userQuery(type,input,order_by,order,department){
+	function searchUsers(){
 
-		var i = input !== '' ? input : '*';
+		var i = search_value !== '' ? search_value : '*';
 
 		progressBar.show();
 
-		var get = $.get('/users/search/' + type + '/' + i + '/' + department + '/' + order_by + '.' + order);
+		var get = $.get('/users/search/' + search_type.val() + '/' + i + '/' + department_filter.val() + '/' + order_by.val() + '.' + order.val());
 
 			get.done(function(view){
 
@@ -346,12 +345,22 @@ var users = (function(){
 
 				}
 
-				tbl_userManagement.html(view);
+				render(view);
 
 				progressBar.hide();
 				
 			});
 
+	}
+
+
+
+
+
+	function render(view){
+	
+	    tbl_userManagement.html(view);
+	    	
 	}
 
 })();

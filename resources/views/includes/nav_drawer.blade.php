@@ -4,13 +4,45 @@
 
     @if (Auth::check())
 
-        <div class="center">
+        @if(Auth::user()->profile()->first())
 
-            <img class="responsive-img circle" src="{{ url('images/logo.png') }}" alt="logo" />
+            <div class="center">
 
-            <a>Hi, {{ Auth::user()->name }}!</a>
+                <div class="pad_20" style="background-image: url( {{ url('images/gradient.png') }} );background-repeat: repeat-x;">
 
-        </div>
+                    <img class="z-depth-2 responsive-img circle" 
+                        src="{{ route('getPhoto',[
+
+                                'url' => 'profiles' . '.' . Auth::user()->profile->id . '.' . 'profile_picture' , 
+
+                                'name' => Auth::user()->profile->image_name ? Auth::user()->profile->image_name : 'default'
+
+                                ])}}" alt="Profile picture">
+
+                </div>
+
+                <h5 class="black-text"> {{ Auth::user()->name }} </h5>
+
+                <a class="btn-flat waves-effect waves-red" href="{{ url('profiles/' . Auth::user()->profile->id . '/edit') }}">
+
+                    Edit my profile
+
+                </a>
+
+
+            </div>
+
+        @else
+
+            <div class="center pad_20">
+
+                <img class="responsive-img circle" src="{{ url('images/logo.png') }}" alt="logo" />
+
+                <h5 class="black-text">Hi, {{ Auth::user()->name }}!</h5>
+
+            </div>
+
+        @endif
 
     @endif
 
@@ -20,7 +52,7 @@
 
     @if (Auth::check())
 
-        @if (Auth::user()->role->name === 'user')
+        @if (Auth::user()->profile()->first())
 
             <li><a href=" {{ url('profiles') }} ">Profile</a></li>
 
