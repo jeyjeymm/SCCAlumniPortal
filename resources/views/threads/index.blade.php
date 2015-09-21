@@ -10,7 +10,11 @@
 
 @section('fab')
                     
-    @include('threads.includes.threads_fab')
+    @if (Auth::check())
+
+    	@include('threads.includes.threads_fab')
+
+    @endif
 
 @stop
 

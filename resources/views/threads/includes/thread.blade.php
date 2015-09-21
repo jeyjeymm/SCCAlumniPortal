@@ -19,6 +19,7 @@
 		$name = 'default';
 	}
 
+	$thread_ownership_validation = false;
 
 	if (Auth::check()) {
 

@@ -11,7 +11,11 @@
 
 @section('fab')
                     
-    @include('threads.includes.comments_fab')
+    @if (Auth::check())
+
+    	@include('threads.includes.comments_fab')
+
+    @endif
 
 @stop
 
