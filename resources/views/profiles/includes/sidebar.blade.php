@@ -32,14 +32,22 @@
 				@endif
 
 			@endif
-		
-		@if ($profile->about_me !== '')
-
-			<blockquote><i>{{ $profile->about_me }}</i></blockquote>
-
-		@endif
 			
 	</div>
+
+	@if ($profile->about_me !== '')
+
+		<div class="card">
+
+			<div class="marg_20">
+
+				<blockquote><i>{{ $profile->about_me }}</i></blockquote>
+
+			</div>
+
+		</div>
+
+	@endif
 
 	@if (Auth::user()->profile()->first())
 

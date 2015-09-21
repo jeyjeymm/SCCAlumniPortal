@@ -1,18 +1,22 @@
-<div class="card pad_20">
+<div class="card">
 
-	<blockquote>Invite your fellow alumni to come to our website via email!</blockquote>
+	<div class="marg_20">
 
-	<form id="form_emailAFriend">
+		<blockquote>Invite your fellow alumni to come to our website via email!</blockquote>
 
-		<div class="input-field">
+		<form id="form_emailAFriend">
 
-			<input id="friend_email" type="email" name="friend_email" />
-			<label>Email a friend!</label>
+			<div class="input-field">
 
-		</div>
+				<input id="friend_email" type="email" name="friend_email" />
+				<label>Email a friend!</label>
 
-	</form>
+			</div>
 
-	@include('includes.progress_bar')
+		</form>
+
+		@include('includes.progress_bar')
+
+	</div>
 
 </div>
