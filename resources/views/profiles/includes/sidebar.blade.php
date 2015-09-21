@@ -15,15 +15,15 @@
 
 		</div>
 
-		<h5 class="black-text"> {{ $profile->user->name }} </h5>
-
-		<li class="divider"></li>
+		<h5 class="black-text marg_20"> {{ $profile->user->name }} </h5>
 
 			@if (Auth::user()->profile()->first())
 
 				@if ($profile->id === Auth::user()->profile->id)
 
-					<a class="btn-flat waves-effect waves-red" href="{{ url('profiles/' . $profile->id . '/edit') }}">
+					<li class="divider"></li>
+
+					<a class="btn-flat waves-effect waves-red marg_20" href="{{ url('profiles/' . $profile->id . '/edit') }}">
 
 						Edit my profile
 
@@ -32,11 +32,23 @@
 				@endif
 
 			@endif
-			
-		<blockquote><i>{{ $profile->about_me }}</i></blockquote>
+		
+		@if ($profile->about_me !== '')
+
+			<blockquote><i>{{ $profile->about_me }}</i></blockquote>
+
+		@endif
 			
 	</div>
 
-	@include('profiles.includes.email_a_friend')
+	@if (Auth::user()->profile()->first())
+
+		@if ($profile->id === Auth::user()->profile->id)
+
+			@include('profiles.includes.email_a_friend')
+
+		@endif
+
+	@endif
 
 </div>

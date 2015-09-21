@@ -124,13 +124,55 @@
 
     ];
 
+    $philippine_regions = [
+
+        'Region I',
+
+        'Region II',
+
+        'Region III',
+
+        'Region IV-A',
+
+        'Region IV-B',
+
+        'Region V',
+
+        'Region VI',
+
+        'Region VII',
+
+        'Region VIII',
+
+        'Region IX',
+
+        'Region X',
+
+        'Region XI',
+
+        'Region XII',
+
+        'Region XIII',
+
+        'Region XVIII',
+
+        'ARMM',
+
+        'CAR',
+
+        'NCR'
+
+    ];
+
+    $isSelected = $profile->first() ? $profile->province : old('province') ;
+
 ?>
 
 <div class="input-field col s12 m6 l6">
 
     <select name="province" class="browser-default">
 
-        <option disabled {{ old('province') === null ? "selected" : null }} >Select your province</option>
+        <option disabled {{ $isSelected === null ? "selected" : null }} >Select your province</option>
 
         @for($i = 0; $i < count($philippine_regions); $i++)
 
@@ -140,7 +182,7 @@
         	
         	@for($j = 0; $j < count($philippine_provinces[$i]); $j++)
 
-        		<option value="{{ $philippine_provinces[$i][$j] }}" {{ old('province') === $philippine_provinces[$i][$j] ? "selected" : null }} >{{ $philippine_provinces[$i][$j] }}</option>
+        		<option value="{{ $philippine_provinces[$i][$j] }}" {{ $isSelected === $philippine_provinces[$i][$j] ? "selected" : null }} >{{ $philippine_provinces[$i][$j] }}</option>
 
         	@endfor
 

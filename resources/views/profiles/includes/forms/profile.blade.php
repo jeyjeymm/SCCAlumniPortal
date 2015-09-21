@@ -3,7 +3,6 @@
 	@Params
 
 	Profile $profile;
-	String $action;
 
 -->
 
@@ -163,6 +162,7 @@
 @include('profiles.includes.forms._region_of_origin')
 
 @include('profiles.includes.forms._province')
+
 
 <div class="input-field col s12 m12 l12">
 

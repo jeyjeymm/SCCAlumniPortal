@@ -19,7 +19,7 @@ class CheckIfUserHasSurvey
 
         if (Auth::check()) {
 
-            if (!Auth::user()->educational_attainments()->first() && Auth::user()->isRole('user')) {
+            if (!Auth::user()->educational_attainments()->first() && Auth::user()->role->name === 'user') {
 
                 return redirect('survey');
 

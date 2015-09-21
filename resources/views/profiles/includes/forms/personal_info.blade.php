@@ -94,50 +94,6 @@
 
 </div>
 
-<?php
-
-    $philippine_regions = [
-
-        'Region I',
-
-        'Region II',
-
-        'Region III',
-
-        'Region IV-A',
-
-        'Region IV-B',
-
-        'Region V',
-
-        'Region VI',
-
-        'Region VII',
-
-        'Region VIII',
-
-        'Region IX',
-
-        'Region X',
-
-        'Region XI',
-
-        'Region XII',
-
-        'Region XIII',
-
-        'Region XVIII',
-
-        'ARMM',
-
-        'CAR',
-
-        'NCR'
-
-    ];
-
-?>
-
 @include('profiles.includes.forms._region_of_origin')
 
 @include('profiles.includes.forms._province')

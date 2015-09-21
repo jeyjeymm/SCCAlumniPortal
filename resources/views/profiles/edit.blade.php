@@ -3,10 +3,10 @@
 	@Params
 
 	Profile $profile
-	String $action
 
 -->
 @extends('master')
+
 @section('content')
 
 	<div class="white marg_20 pad_20">

@@ -23,18 +23,19 @@
 
 	<?php
 
-		if ($thread->user->profile !== null) {
+		if ($thread->user->profile()->first()) {
 
 			$profile_id = $thread->user->profile->id;
 			$profile_link = url('profiles/'.$profile_id);
 			$url = 'profiles' . '.' . $profile_id . '.' . 'profile_picture';
-			$name = $thread->user->profile->image_name;
+			
+			$image_name = $thread->user->profile->image_name !== '' ? $thread->user->profile->image_name : 'default' ;
 
 		} else {
 
-			$profile_link = '#';
+			$profile_link = null;
 			$url = 'profiles';
-			$name = 'default.jpg';
+			$image_name = 'default';
 		}
 
 	?>
@@ -57,7 +58,7 @@
 
 		    <li class="collection-item avatar">
 
-		    	<img src="{{ route('getPhoto',['url' => $url,'name' => $name]) }}" 
+		    	<img src="{{ route('getPhoto',['url' => $url,'name' => $image_name]) }}" 
 		    			alt="Avatar" class="circle"/>
 
 		    	<p> {!! $thread->body !!} </p>

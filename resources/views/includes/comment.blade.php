@@ -51,7 +51,13 @@
 	  			
 	  			</a> 
 
-	  			commented {{ $comment->updated_at->diffForHumans() }}:
+	  			commented {{ $comment->created_at->diffForHumans() }}: 
+
+	  			@if ($comment->created_at != $comment->updated_at)
+
+	  				(updated {{ $comment->updated_at->diffForHumans() }})
+
+	  			@endif
 
 	  		</i>
 
@@ -61,7 +67,7 @@
 
 	  	@if (Auth::check())
 
-		  	@if ($comment->user->id === Auth::user()->id || Auth::user()->role->id === 1)
+		  	@if ($comment->user->id === Auth::user()->id || Auth::user()->role->name === 'admin')
 
 		  		<div class="open_comment_modal">
 
