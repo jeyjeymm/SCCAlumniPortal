@@ -70,7 +70,7 @@ class SurveysController extends Controller
 
             case 4:
 
-                return view('survey.training_or_advanced_studies.index');
+                return view('survey.trainings_or_advanced_studies.index');
                 
             break;
 
@@ -291,10 +291,10 @@ class SurveysController extends Controller
     
         $educational_attainments = EducationalAttainment::paginate(20);
         $professional_exams_passed = ProfessionalExamPassed::paginate(20);
-        $training_or_advanced_studies = TrainingOrAdvancedStudy::paginate(20);
+        $trainings_or_advanced_studies = TrainingOrAdvancedStudy::paginate(20);
         $employment_data = EmploymentData::paginate(20);
 
-        return view('survey.list',compact('educational_attainments','professional_exams_passed','training_or_advanced_studies','employment_data'));
+        return view('survey.list',compact('educational_attainments','professional_exams_passed','trainings_or_advanced_studies','employment_data'));
             
     }
 
@@ -305,19 +305,19 @@ class SurveysController extends Controller
 
             $educational_attainments = EducationalAttainment::paginate(20);
             $professional_exams_passed = ProfessionalExamPassed::paginate(20);
-            $training_or_advanced_studies = TrainingOrAdvancedStudy::paginate(20);
+            $trainings_or_advanced_studies = TrainingOrAdvancedStudy::paginate(20);
             $employment_data = EmploymentData::paginate(20);
 
         } else {
     
             $educational_attainments = EducationalAttainment::where('department_id',$department_id)->paginate(20);
             $professional_exams_passed = ProfessionalExamPassed::where('department_id',$department_id)->paginate(20);
-            $training_or_advanced_studies = TrainingOrAdvancedStudy::where('department_id',$department_id)->paginate(20);
+            $trainings_or_advanced_studies = TrainingOrAdvancedStudy::where('department_id',$department_id)->paginate(20);
             $employment_data = EmploymentData::where('department_id',$department_id)->paginate(20);
 
         }
 
-        return view('survey.includes.survey_list',compact('educational_attainments','professional_exams_passed','training_or_advanced_studies','employment_data'));
+        return view('survey.includes.survey_list',compact('educational_attainments','professional_exams_passed','trainings_or_advanced_studies','employment_data'));
             
     }
 

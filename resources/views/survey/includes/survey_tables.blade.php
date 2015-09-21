@@ -5,7 +5,7 @@
 	Collection $educational_attainments, 
 	$professional_exams_passed,
 	$employment_data,
-	$training_or_advance_studies
+	$trainings_or_advance_studies
 
 -->
 
@@ -124,7 +124,7 @@
 
 
 
-@if ($training_or_advanced_studies->first())
+@if ($trainings_or_advanced_studies->first())
 
 	<div class="col s12 m12 l12">
 
@@ -139,7 +139,7 @@
 				<th>Duration</th>
 				<th>Institution</th>
 
-				@foreach ($training_or_advanced_studies as $training_or_advanced_study)
+				@foreach ($trainings_or_advanced_studies as $training_or_advanced_study)
 
 					<tr>
 
@@ -156,7 +156,7 @@
 
 		</div>
 
-		@include('includes.pagination',['paginator' => $training_or_advanced_studies])
+		@include('includes.pagination',['paginator' => $trainings_or_advanced_studies])
 
 	</div>
 

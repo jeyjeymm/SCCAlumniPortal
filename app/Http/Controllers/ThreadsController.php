@@ -26,7 +26,15 @@ class ThreadsController extends Controller
 
         if (Auth::check()) {
 
-            $threads = Thread::departmentThreads(Auth::user()->department->id)->paginate(20);
+            if (Auth::user()->role->name === 'admin') {
+
+                $threads = Thread::paginate(20);
+
+            } else {
+
+                $threads = Thread::departmentThreads(Auth::user()->department->id)->paginate(20);
+
+            }
 
         } else {
 

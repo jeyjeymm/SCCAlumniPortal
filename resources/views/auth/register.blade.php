@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<div class="marg_20 white z-depth-1 col s12 m8 l8 offset-m2 offset-l2" id="signup_container">
+<div id="signup_container" class="white z-depth-1 col s12 m8 l8 offset-m2 offset-l2 marg_20">
 
     <form class="pad_20" action=" {{ url('auth/register') }} " method="post">
 
@@ -86,20 +86,7 @@
 
             <label>Course: </label>
             <select id="courses" name="course_id" class="browser-default" disabled>
-
-                <option disabled {{ old("course_id") === null ? "selected" : "" }} >Select course</option>
-                <option value="1" {{ old("course_id") === 1 ? "selected" : "" }}>N/A</option>
-                <option value="2" {{ old("course_id") === 1 ? "selected" : "" }}>BSIT</option>
-                <option value="3" {{ old("course_id") === 2 ? "selected" : "" }}>CICS</option>
-                <option value="4" {{ old("course_id") === 3 ? "selected" : "" }}>IS</option>
-                <option value="5" {{ old("course_id") === 4 ? "selected" : "" }}>ACT</option>
-                <option value="6" {{ old("course_id") === 5 ? "selected" : "" }}>BSA</option>
-                <option value="7" {{ old("course_id") === 6 ? "selected" : "" }}>BSBA</option>
-                <option value="8" {{ old("course_id") === 7 ? "selected" : "" }}>JSC</option>
-                <option value="9" {{ old("course_id") === 8 ? "selected" : "" }}>BEED-Gen ED</option>
-                <option value="0" {{ old("course_id") === 9 ? "selected" : "" }}>BEED</option>
-                <option value="11" {{ old("course_id") === 10 ? "selected" : "" }}>BSED</option>
-
+                <option disabled value="1" {{ old("course_id") === 1 ? "selected" : "" }}>N/A</option>
             </select>
 
         </div>

@@ -24,7 +24,7 @@ var users = (function(){
 	var industry_container = user_management_search.find('#industry_container');
 	var industry = industry_container.find('[name="industry"]');
 
-	var lbl_printDepartment = tbl_userManagementContainer.find('#lbl_printDepartment');
+	var lbl_printDepartment = tbl_userManagementContainer.find('#lbl_printedDepartment');
 	var progressBar = tbl_userManagementContainer.find('#progress_bar');
 	var tbl_userManagement = tbl_userManagementContainer.find('#tbl_userManagement');
 	var pagination = tbl_userManagementContainer.find('#pagination');
@@ -234,7 +234,7 @@ var users = (function(){
 		footer.hide();
 		btn_createAccount.hide();
 		btn_printTable.hide();
-		lbl_printDepartment.html('<b>' + department_filter.children(":selected").text() + '</b>').show();
+		lbl_printDepartment.html('<b>' + department_filter.find(":selected").text() + '</b>').show();
 
 
 		window.print();

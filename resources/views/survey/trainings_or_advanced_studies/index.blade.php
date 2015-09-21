@@ -37,7 +37,7 @@
 
                                 <div class="input-field">
 
-                                    <input name="duration_1" type="text" required/>
+                                    <input name="duration_1" type="text" placeholder="e.g. 240 hours" required/>
 
                                     <label>Duration</label>
 

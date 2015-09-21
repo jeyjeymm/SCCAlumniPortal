@@ -88,31 +88,69 @@ class UsersController extends Controller
     public function search($column,$input,$department,$order){
 
         $order_array = explode('.',$order);
+
+        if ($column !== 'industry') {
     
-        if($input !== '*') {
+            if($input !== '*') {
 
-            if ($department !== '0') {
+                if ($department !== '0') {
 
-                $users = User::where($column, 'LIKE', '%'.$input.'%')->where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20); 
+                    //Search specific department
+                    $users = User::where($column, 'LIKE', '%'.$input.'%')->where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20); 
 
+                } else {
+                    //search all departments
+                    $users = User::where($column, 'LIKE', '%'.$input.'%')->orderBy($order_array[0],$order_array[1])->paginate(20); 
+
+                }
+            
             } else {
 
-                $users = User::where($column, 'LIKE', '%'.$input.'%')->orderBy($order_array[0],$order_array[1])->paginate(20); 
+                if ($department !== '0') {
 
+                    //Search specific department
+                    $users = User::where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20);
+
+                } else {
+
+                    //Search all departments
+                    $users = User::orderBy($order_array[0],$order_array[1])->paginate(20);
+
+                }
+            
             }
-        
+
         } else {
 
-            if ($department !== '0') {
+            if($input !== '*') {
 
-                $users = User::where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20);
+                if ($department !== '0') {
 
+                    //Search specific department
+                    $users = User::where($column, 'LIKE', '%'.$input.'%')->where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20); 
+
+                } else {
+                    //search all departments
+                    $users = User::where($column, 'LIKE', '%'.$input.'%')->orderBy($order_array[0],$order_array[1])->paginate(20); 
+
+                }
+            
             } else {
 
-                $users = User::orderBy($order_array[0],$order_array[1])->paginate(20);
+                if ($department !== '0') {
 
+                    //Search specific department
+                    $users = User::where('department_id','LIKE', $department)->where('role_id',3)->orderBy($order_array[0],$order_array[1])->paginate(20);
+
+                } else {
+
+                    //Search all departments
+                    $users = User::orderBy($order_array[0],$order_array[1])->paginate(20);
+
+                }
+            
             }
-        
+
         }
 
         $users->setPath(url('users'.'/'));

@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
 
-<div class="white z-depth-1 col s12 m6 l6 offset-m3 offset-l3">
+<div class="white z-depth-1 col s12 m6 l6 offset-m3 offset-l3 marg_20">
 
         <form class="pad_20" action=" {{ url('auth/login') }} " method="post">
 
@@ -47,8 +47,6 @@
 
             </div>
 
-            <div>
-
             	<button class="waves-effect waves-light btn red darken-1" type="submit">Login</button>
 
             	<a href=" {{ url('auth/register') }} " class="waves-effect waves-red btn-flat tooltipped" data-position="bottom" data-delay="300" data-tooltip="Click here to go to the registration form.">Register</a>
@@ -57,9 +55,7 @@
 
        				<a href=" {{ url('password/email') }} " class="tooltipped" data-position="bottom" data-delay="300" data-tooltip="Click here to go to the password reset form.">Password Reset</a>
        		
-       			</div>       		
-
-       		</div>
+       			</div>  
 
             @include('errors.form_errors')
           

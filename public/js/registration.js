@@ -7,8 +7,8 @@ var registration = {
 			courses : [
 
 				'BSIT',
-				'CICS',
-				'IS'
+				'BSCS',
+				'BSIS'
 
 			],
 

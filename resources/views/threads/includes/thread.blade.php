@@ -8,15 +8,12 @@
 
 <?php
 
-	if ($thread->user->profile !== null) {
+	if ($thread->user->profile()->first()) {
 
 		$url = 'profiles' . '.' . $thread->user->profile->id . '.' . 'profile_picture';
 		$name = $thread->user->profile->image_name !== '' ? $thread->user->profile->image_name : 'default' ;
 
-
-
 	} else {
-
 
 		$url = 'profiles';
 		$name = 'default';
@@ -34,10 +31,6 @@
 			$thread_ownership_validation = $thread->user->id === Auth::user()->id ? true : false;
 
 		}
-
-	} else {
-
-		$thread_ownership_validation = false;
 
 	}
 
