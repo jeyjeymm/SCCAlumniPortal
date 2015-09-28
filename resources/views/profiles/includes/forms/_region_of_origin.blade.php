@@ -39,8 +39,13 @@
         'NCR'
 
     ];
-
-    $isSelected = $profile->first() ? $profile->region_of_origin : old('region_of_origin') ;
+	$isSelected = null;
+	
+	if (isset($profile)) {
+		
+		$isSelected = $profile->first() ? $profile->region_of_origin : old('region_of_origin') ;
+	
+	}
 
 ?>
 

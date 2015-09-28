@@ -164,7 +164,13 @@
 
     ];
 
-    $isSelected = $profile->first() ? $profile->province : old('province') ;
+    $isSelected = null;
+	
+	if (isset($profile)) {
+		
+		$profile->first() ? $profile->province : old('province') ;
+		
+	}
 
 ?>
 
