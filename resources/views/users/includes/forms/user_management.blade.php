@@ -42,9 +42,9 @@
 
         <div class="row">
 
-            <div class="input-field">
+            <div class="col s12 m6 l6">
 
-                <div class="col s12 m6 l6">
+                <div class="input-field">
 
                     <select id="department_id" name="department_id">
 
@@ -62,16 +62,15 @@
 
                     </select>
 
-                    <label>Department: </label>
+                    <label for="department_id">Department: </label>
 
                 </div>
 
             </div>
 
+            <div class="col s12 m6 l6">
 
-            <div class="input-field">
-
-                <div class="col s12 m6 l6">
+                <div class="input-field">
 
                     <select id="role_id" name="role_id">
 
@@ -85,7 +84,7 @@
 
                     </select>
 
-                    <label>Role: </label>
+                    <label for="role_id">Role: </label>
 
                 </div>
 

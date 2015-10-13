@@ -22,6 +22,7 @@
             <th data-field="name_of_company_or_org">Name of Company</th>
             <th data-field="work_address">Work Address</th>
             <th data-field="present_occupation">Occupation</th>
+            <th data-field="reasons_not_yet_employed">Reasons not yet employed</th>
         </tr>
     </thead>
 
@@ -49,7 +50,7 @@
 		            <td>{{ $user->employment_data()->first() ? $user->employment_data->name_of_company_or_org : '-' }}</td>
 		            <td>{{ $user->employment_data()->first() ? $user->employment_data->work_address : '-' }}</td>
 		            <td>{{ $user->employment_data()->first() ? $user->employment_data->present_occupation : '-' }}</td>
-
+		          	<td>{{ $user->employment_data()->first() ? $user->employment_data->reasons_not_yet_employed : '-' }}</td>
 		        </tr>
 
 		    @endforeach
